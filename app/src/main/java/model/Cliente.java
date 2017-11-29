@@ -57,7 +57,7 @@ public class Cliente
 
     /**
      * Abre uma comanda individual para o cliente na mesa
-     * @param idMesa Mesa em que será aberta a comanda individual do cliente
+     * @param idMesa Mesa em que será aberta a comanda individual do cliente.
      */
     public void abrirComandaIndiv()
     {
