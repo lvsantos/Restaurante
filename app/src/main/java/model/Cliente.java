@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-
 /**
  * Created by lucas on 29/11/17.
  * Classe que trata as interações do cliente
@@ -11,20 +9,20 @@ public class Cliente
 {
     private int id;
     private String nomeComp;
-    private String cpf;
+    private int cpf;
     private String login;
     private String senha;
     private String email;
     private Endereco endereco;
-    private Date dataNasc;
+    private String dataNasc;
     private char sexo;
     private String celular;
     private CartaoCredito cartaoCred;
     private Comanda comandaAberta;
     private Pedido pedidoAberto;
 
-    public Cliente(int id, String nomeComp, String cpf, String login, String senha, String email, Endereco endereco,
-                   Date dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
+    public Cliente(int id, String nomeComp, int cpf, String login, String senha, String email, Endereco endereco,
+                   String dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
     {
         setId(id);
         setNomeComp(nomeComp);
@@ -39,8 +37,8 @@ public class Cliente
         setCartaoCred(cartaoCred);
     }
 
-    public Cliente(String nomeComp, String cpf, String login, String senha, String email, Endereco endereco,
-                   Date dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
+    public Cliente(String nomeComp, int cpf, String login, String senha, String email, Endereco endereco,
+                   String dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
     {
         setId(-1);
         setNomeComp(nomeComp);
@@ -55,10 +53,6 @@ public class Cliente
         setCartaoCred(cartaoCred);
     }
 
-    /**
-     * Abre uma comanda individual para o cliente na mesa
-     * @param idMesa Mesa em que será aberta a comanda individual do cliente.
-     */
     public void abrirComandaIndiv()
     {
         comandaAberta = new Comanda();
@@ -80,11 +74,11 @@ public class Cliente
         this.nomeComp = nomeComp;
     }
 
-    public String getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(int cpf) {
         this.cpf = cpf;
     }
 
@@ -120,11 +114,11 @@ public class Cliente
         this.endereco = endereco;
     }
 
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
