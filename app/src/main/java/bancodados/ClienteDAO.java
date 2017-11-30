@@ -1,5 +1,7 @@
 package bancodados;
 
+import android.database.Cursor;
+
 import Tools.StringParser;
 import model.CartaoCredito;
 import model.Cliente;
@@ -103,14 +105,64 @@ public class ClienteDAO
         return  null;
     }*/
 
-    /*
-    public Cliente pesquisarClienteCpf(int cpf)
+    public Cliente pesquisarClienteLogin(String login)
     {
-        String query = "SELECT nomeComp, cpf, email, login, senha, dataNasc, sexo, celular, " +
-                "Cartao_credito_id, Endereco_id" +
-                "FROM Cliente" +
-                "WHERE id = " + cpf;
-    }*/
+        String query = "SELECT cli.id as idCli, nomeComp, cpf, email, senha, dataNasc, sexo, celular, " +
+                "end.id as idEnd, cep, rua, end.numero as numEnd, complemento, cidade," +
+                " " + "estado, " +
+                "car.id as idCar, car.numero as numCar, codSeguranca, " + "bandeira, nomeTitular"
+                + " FROM Cliente cli" +
+                " INNER JOIN Endereco end" +
+                " ON cli.Endereco_id = end.id" +
+                " INNER JOIN Cartao_credito car" +
+                " ON cli.Cartao_credito_id = car.id" +
+                " WHERE login = \"" + login + "\"";
+        Cursor cursor = bd.selectQuery(query);
+
+        if(cursor.moveToFirst())
+        {
+            System.out.println("Aqui foi 0");
+            Endereco end = new Endereco(
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("idEnd"))),
+                    cursor.getString(cursor.getColumnIndex("cep")),
+                    cursor.getString(cursor.getColumnIndex("rua")),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("numEnd"))),
+                    cursor.getString(cursor.getColumnIndex("complemento")),
+                    cursor.getString(cursor.getColumnIndex("cidade")),
+                    cursor.getString(cursor.getColumnIndex("estado"))
+            );
+            System.out.println("Aqui foi 1");
+            System.out.printf("Endereco: %s", end.getRua());
+            System.out.printf("Posicao: %d", cursor.getPosition());
+            System.out.printf("Posicao: %d", cursor.getPosition());
+            System.out.println("Aqui foi 2");
+            int i =  Integer.parseInt(cursor.getString(cursor.getColumnIndex("idCar")));
+            int q = Integer.parseInt(cursor.getString(cursor.getColumnIndex("numCar")));
+            int t = Integer.parseInt(cursor.getString(cursor.getColumnIndex("codSeguranca")));
+            /*Integer.parseInt(cursor.getString(cursor.getColumnIndex("bandeira")));
+            cursor.getString(cursor.getColumnIndex("nomeTitular"));*/
+            /*CartaoCredito cartao = new CartaoCredito(
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("idCar"))),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("numCar"))),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("codSeguranca"))),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("bandeira"))),
+                    cursor.getString(cursor.getColumnIndex("nomeTitular")));
+            System.out.printf("Cartao: %s", cartao.getNomeTitular());*/
+            /*return new Cliente(
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("idCli"))),
+                    cursor.getString(cursor.getColumnIndex("nomeComp")),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("cpf"))),
+                    cursor.getString(cursor.getColumnIndex(login)),
+                    cursor.getString(cursor.getColumnIndex("senha")),
+                    cursor.getString(cursor.getColumnIndex("email")),
+                    end,
+                    cursor.getString(cursor.getColumnIndex("dataNasc")),
+                    cursor.getString(cursor.getColumnIndex("sexo")).charAt(0),
+                    cursor.getString(cursor.getColumnIndex("celular")),
+                    cartao);*/return null;
+        }
+        return  null;
+    }
 
     public BancoDados getBd() {
         return bd;
