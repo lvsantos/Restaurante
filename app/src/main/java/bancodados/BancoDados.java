@@ -30,37 +30,47 @@ public class BancoDados extends SQLiteOpenHelper
 
         System.out.println("Método OnCreate() de BancoDados");
 
-        script.add("CREATE TABLE Cartao_credito(id NOT NULL INTEGER PRIMARY KEY, numero NOT NULL INTEGER, " +
-                "codSeguranca NOT NULL INTEGER, bandeira INTEGER, nomeTitular TEXT)");
-        script.add("CREATE TABLE Endereco(id NOT NULL INTEGER PRIMARY KEY, cep NOT NULL TEXT, rua NOT NULL TEXT, " +
-                "numero NOT NULL INTEGER, " + "complemento TEXT, cidade NOT NULL TEXT, estado NOT NULL TEXT)");
-        script.add("CREATE TABLE Cliente(id NOT NULL INTEGER PRIMARY KEY, nomeComp NOT NULL TEXT, cpf NOT NULL TEXT, " +
-                "email NOT NULL TEXT, " + "login NOT NULL TEXT, senha NOT NULL TEXT, dataNasc NOT NULL TEXT, " +
-                "sexo NOT NULL TEXT, celular NOT NULL TEXT, Cartao_credito_id NOT NULL INTEGER, Endereco_id NOT NULL INTEGER," +
+        script.add("CREATE TABLE Cartao_credito(id INTEGER NOT NULL PRIMARY KEY, numero TEXT NOT NULL, " +
+                "codSeguranca INTEGER NOT NULL, bandeira INTEGER NOT NULL, nomeTitular TEXT NOT NULL)");
+
+        script.add("CREATE TABLE Endereco(id INTEGER  NOT NULL PRIMARY KEY, cep TEXT NOT NULL, rua TEXT NOT NULL, " +
+                "numero INTEGER NOT NULL, " + "complemento TEXT NOT NULL , cidade TEXT NOT NULL, estado TEXT NOT NULL)");
+
+        script.add("CREATE TABLE Cliente(id INTEGER  NOT NULL PRIMARY KEY, nomeComp TEXT NOT NULL, cpf TEXT NOT NULL, " +
+                "email TEXT NOT NULL, " + "login TEXT NOT NULL, senha TEXT NOT NULL, dataNasc TEXT NOT NULL, " +
+                "sexo TEXT NOT NULL, celular TEXT NOT NULL, Cartao_credito_id INTEGER NOT NULL, Endereco_id INTEGER NOT NULL," +
                 "FOREIGN KEY(Cartao_credito_id) REFERENCES Cartao_credito(id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
                 "FOREIGN KEY(Endereco_id) REFERENCES Endereco(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Comanda(id NOT NULL INTEGER PRIMARY KEY, Cliente_id NOT NULL INTEGER, " +
-                "status NOT NULL INTEGER," +
-                "FOREIGN KEY(Cliente_id) REFERENCES Cliente(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Pedido(id NOT NULL INTEGER PRIMARY KEY, status NOT NULL INTEGER, nota INTEGER, " +
-                "reclamacao TEXT," + "Comanda_id NOT NULL INTEGER," +
+
+        script.add("CREATE TABLE Comanda(id INTEGER NOT NULL PRIMARY KEY, Cliente_id INTEGER NOT NULL, " +
+                "status INTEGER NOT NULL, Mesa_id INTEGER NOT NULL," +
+                "FOREIGN KEY(Cliente_id) REFERENCES Cliente(id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
+                "FOREIGN KEY(Mesa_id) REFERENCES Mesa(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
+
+        script.add("CREATE TABLE Pedido(id INTEGER NOT NULL PRIMARY KEY, status INTEGER NOT NULL, nota INTEGER, " +
+                "reclamacao TEXT," + "Comanda_id INTEGER NOT NULL," +
                 "FOREIGN KEY(Comanda_id) REFERENCES Comanda(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Cardapio(id NOT NULL INTEGER PRIMARY KEY)");
-        script.add("CREATE TABLE Item_cardapio(id NOT NULL INTEGER PRIMARY KEY, nome NOT NULL TEXT, descricao NOT NULL TEXT, " +
-                "valor NOT NULL DOUBLE," + "ingredientes NOT NULL TEXT, tipo NOT NULL INTEGER, isVisible NOT NULL INTEGER, " +
-                "Cardapio_id NOT NULL INTEGER," +
+
+        script.add("CREATE TABLE Restaurante(id INTEGER NOT NULL PRIMARY KEY, nome TEXT NOT NULL, razao_social TEXT NOT NULL, " +
+                "cnpj TEXT NOT NULL," + "login TEXT NOT NULL, senha TEXT NOT NULL, email TEXT NOT NULL, telefone TEXT NOT NULL, " +
+                "Endereco_id INTEGER NOT NULL," +
+                "FOREIGN KEY(Endereco_id) REFERENCES Endereco(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
+
+        script.add("CREATE TABLE Cardapio(id INTEGER NOT NULL PRIMARY KEY, Restaurante_id INTEGER NOT NULL," +
+                "FOREIGN KEY(RESTAURANTE_ID) REFERENCES RESTAURANTE(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
+
+        script.add("CREATE TABLE Item_cardapio(id INTEGER NOT NULL PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT NOT NULL, " +
+                "valor DOUBLE NOT NULL," + "ingredientes TEXT NOT NULL, tipo INTEGER NOT NULL, isVisible INTEGER NOT NULL, " +
+                "Cardapio_id INTEGER NOT NULL," +
                 "FOREIGN KEY(Cardapio_id) REFERENCES Cardapio(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Item_Pedido(id NOT NULL INTEGER PRIMARY KEY, Pedido_id NOT NULL INTEGER, " +
-                "status NOT NULL INTEGER, Item_cardapio_id NOT NULL INTEGER," +
+
+        script.add("CREATE TABLE Item_Pedido(id INTEGER NOT NULL PRIMARY KEY, Pedido_id INTEGER NOT NULL, " +
+                "status INTEGER NOT NULL, Item_cardapio_id INTEGER NOT NULL," +
                 "FOREIGN KEY(Pedido_id) REFERENCES Pedido(id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
                 "FOREIGN KEY(Item_cardapio_id) REFERENCES Item_cardapio(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Restaurante(id NOT NULL INTEGER PRIMARY KEY, nome NOT NULL TEXT, razao_social NOT NULL TEXT, " +
-                "cnpj NOT NULL INTEGER," + "login NOT NULL TEXT, senha NOT NULL TEXT, email NOT NULL TEXT, " +
-                "Endereco_id NOT NULL INTEGER, Cardapio_id NOT NULL INTEGER," +
-                "FOREIGN KEY(Endereco_id) REFERENCES Endereco(id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
-                "FOREIGN KEY(Cardapio_id) REFERENCES Cardapio(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
-        script.add("CREATE TABLE Mesa(id NOT NULL INTEGER PRIMARY KEY, isOpen NOT NULL INTEGER, Restaurante_id NOT NULL INTEGER," +
-                "FOREIGN KEY(Restaurante_id) REFERENCES Restaurante(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
+
+        script.add("CREATE TABLE Mesa(id INTEGER NOT NULL PRIMARY KEY, Restaurante_id INTEGER NOT NULL,"
+                + "FOREIGN KEY(Restaurante_id) REFERENCES Restaurante(id) ON DELETE NO ACTION ON UPDATE NO ACTION)");
         int i;
         for(i=0; i<script.size(); i++)
         {

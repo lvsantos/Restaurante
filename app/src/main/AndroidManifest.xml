@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TelaPrincipalActivity" />
+        <activity android:name=".AbrirComandaActivity" />
+        <activity android:name=".CardapioActivity"></activity>
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ public class Cliente
 {
     private int id;
     private String nomeComp;
-    private int cpf;
+    private String cpf;
     private String login;
     private String senha;
     private String email;
@@ -21,8 +21,9 @@ public class Cliente
     private Comanda comandaAberta;
     private Pedido pedidoAberto;
 
-    public Cliente(int id, String nomeComp, int cpf, String login, String senha, String email, Endereco endereco,
-                   String dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
+    public Cliente(int id, String nomeComp, String cpf, String login, String senha, String email,
+                   Endereco endereco, String dataNasc, char sexo, String celular,
+                   CartaoCredito cartaoCred, Comanda comandaAberta)
     {
         setId(id);
         setNomeComp(nomeComp);
@@ -35,10 +36,13 @@ public class Cliente
         setSexo(sexo);
         setCelular(celular);
         setCartaoCred(cartaoCred);
+        setComandaAberta(comandaAberta);
+        setPedidoAberto(null);
     }
 
-    public Cliente(String nomeComp, int cpf, String login, String senha, String email, Endereco endereco,
-                   String dataNasc, char sexo, String celular, CartaoCredito cartaoCred)
+    public Cliente(String nomeComp, String cpf, String login, String senha, String email,
+                   Endereco endereco, String dataNasc, char sexo, String celular,
+                   CartaoCredito cartaoCred)
     {
         setId(-1);
         setNomeComp(nomeComp);
@@ -51,13 +55,17 @@ public class Cliente
         setSexo(sexo);
         setCelular(celular);
         setCartaoCred(cartaoCred);
+        setComandaAberta(null);
+        setPedidoAberto(null);
     }
 
-    public void abrirComandaIndiv()
+    public void abrirComandaIndiv(Mesa mesa)
     {
-        comandaAberta = new Comanda();
+        comandaAberta = new Comanda(mesa);
     }
 
+
+    //Métodos getters e setters
     public int getId() {
         return id;
     }
@@ -74,11 +82,11 @@ public class Cliente
         this.nomeComp = nomeComp;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

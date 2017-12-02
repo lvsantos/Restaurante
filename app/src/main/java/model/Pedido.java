@@ -10,25 +10,40 @@ import java.util.Vector;
 public class Pedido
 {
     int id;
+    /**
+     * status = 0: Em andamento, 1: Aprovação pagamento, 2: Pagamento aprovado, 3: Em preparo, 4: Encaminhado, 5: Finalizado
+     */
     private int status;
     private int nota;
     private String reclamacao;
     private Vector<ItemPedido>items;
 
-    public Pedido(int id, int status, int nota, String reclamacao)
+    public Pedido(int id, int status, int nota, String reclamacao, Vector<ItemPedido>items)
     {
         setId(id);
         setStatus(status);
         setNota(nota);
         setReclamacao(reclamacao);
+        setItems(items);
     }
 
-    public Pedido(int status, int nota, String reclamacao)
+    public Pedido()
     {
         setId(-1);
-        setStatus(status);
-        setNota(nota);
-        setReclamacao(reclamacao);
+        setStatus(0);
+        setNota(-1);
+        setReclamacao("");
+        items = new Vector<ItemPedido>();
+    }
+
+    public void addItemPedido(ItemPedido item)
+    {
+        items.add(item);
+    }
+
+    public void removerItemPedido(ItemPedido item)
+    {
+        items.remove(item);
     }
 
     public int getId() {
@@ -61,5 +76,13 @@ public class Pedido
 
     public void setReclamacao(String reclamacao) {
         this.reclamacao = reclamacao;
+    }
+
+    public Vector<ItemPedido> getItems() {
+        return items;
+    }
+
+    public void setItems(Vector<ItemPedido> items) {
+        this.items = items;
     }
 }

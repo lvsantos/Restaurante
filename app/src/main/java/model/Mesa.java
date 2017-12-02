@@ -10,26 +10,47 @@ import java.util.Vector;
 public class Mesa
 {
     private int id;
-    private boolean isOpen;
-    private Vector<Cliente>clientes;
+    //private boolean isOpen;
+    //private Vector<Comanda>comandas;
 
-    public Mesa(int id, boolean isOpen, Vector<Cliente>clientes)
+    public Mesa(int id/*, boolean isOpen, Vector<Comanda>comandas*/)
+    {
+        System.out.println("No construtor da classe Mesa");
+        setId(id);
+        /*setOpen(isOpen);
+        setComandas(comandas);*/
+    }
+
+    /*public Mesa(int id)
     {
         setId(id);
-        setOpen(isOpen);
-        setClientes(clientes);
-    }
+        setOpen(false);
+        setComandas(new Vector<Comanda>());
+    }*/
 
     public Mesa()
     {
         setId(-1);
-        setOpen(false);
+        /*setOpen(false);
+        setComandas(new Vector<Comanda>());*/
     }
 
-    public void associarCliente(Cliente cli)
+    /*public void addComanda(Comanda comanda)
     {
-        clientes.add(cli);
-    }
+        if(comandas.size() == 0)
+        {
+            setOpen(true);
+        }
+        comandas.add(comanda);
+    }*/
+
+    /*public void removeComanda(Comanda comanda)
+    {
+        if(comandas.remove(comanda) && comandas.size() == 0)
+        {
+            setOpen(false);
+        }
+    }*/
 
     public int getId() {
         return id;
@@ -39,7 +60,7 @@ public class Mesa
         this.id = id;
     }
 
-    public boolean isOpen() {
+    /*public boolean isOpen() {
         return isOpen;
     }
 
@@ -47,11 +68,11 @@ public class Mesa
         isOpen = open;
     }
 
-    public Vector<Cliente> getClientes() {
-        return clientes;
+    public Vector<Comanda> getComandas() {
+        return comandas;
     }
 
-    public void setClientes(Vector<Cliente> clientes) {
-        this.clientes = clientes;
-    }
+    public void setComandas(Vector<Comanda> comandas) {
+        this.comandas = comandas;
+    }*/
 }

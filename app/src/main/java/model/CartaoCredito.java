@@ -8,13 +8,14 @@ package model;
 public class CartaoCredito
 {
     private int id;
-    private int numero;
+    private String numero;
     private int codSeguranca;
     private int bandeira;
     private String nomeTitular;
 
-    public CartaoCredito(int id, int numero, int codSeguranca, int bandeira, String nomeTitular)
+    public CartaoCredito(int id, String numero, int codSeguranca, int bandeira, String nomeTitular)
     {
+        System.out.println("\nConstrutor da classe CartaoCredito");
         setId(id);
         setNumero(numero);
         setCodSeguranca(codSeguranca);
@@ -22,7 +23,7 @@ public class CartaoCredito
         setNomeTitular(nomeTitular);
     }
 
-    public CartaoCredito(int numero, int codSeguranca, int bandeira, String nomeTitular)
+    public CartaoCredito(String numero, int codSeguranca, int bandeira, String nomeTitular)
     {
         setId(-1);
         setNumero(numero);
@@ -39,11 +40,11 @@ public class CartaoCredito
         this.id = id;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

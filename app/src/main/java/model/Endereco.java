@@ -15,7 +15,8 @@ public class Endereco
     private String cidade;
     private String estado;
 
-    public Endereco(int id, String cep, String rua, int num, String complemento, String cidade, String estado)
+    public Endereco(int id, String cep, String rua, int num, String complemento, String cidade,
+                    String estado)
     {
         setId(id);
         setCep(cep);
@@ -26,7 +27,8 @@ public class Endereco
         setEstado(estado);
     }
 
-    public Endereco(String cep, String rua, int num, String complemento, String cidade, String estado)
+    public Endereco(String cep, String rua, int num, String complemento, String cidade,
+                    String estado)
     {
         setId(-1);
         setCep(cep);

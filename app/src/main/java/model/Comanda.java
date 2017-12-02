@@ -11,16 +11,26 @@ public class Comanda
 {
     private int id;
     private Vector<Pedido>pedidos;
+    private Mesa mesa;
+    private int status; //0: Nem aberta, 1: Aberta, 2: Fechada
 
-    public Comanda(int id)
+    public Comanda(int id, int status, Vector<Pedido>pedidos, Mesa mesa)
     {
         setId(id);
+        setStatus(status);
+        setPedidos(pedidos);
+        setMesa(mesa);
     }
 
-    public Comanda()
+    public Comanda(Mesa mesa)
     {
         setId(-1);
+        setStatus(1);
+        pedidos = new Vector<>();
+        setMesa(mesa);
     }
+
+    //Métodos getters e setters
 
     public int getId() {
         return id;
@@ -36,5 +46,21 @@ public class Comanda
 
     public void setPedidos(Vector<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
