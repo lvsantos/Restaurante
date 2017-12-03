@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pag">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="10dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/textotopo"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:background="@drawable/nome"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/numero"
+            android:ems="10"
+            android:inputType="number" />
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="20dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="0dp">
+
+
+            <EditText
+                android:id="@+id/editText7"
+                android:layout_width="140dp"
+                android:layout_height="81dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:background="@drawable/datadevalidade"
+                android:ems="10"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/editText9"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_mar=""
+                android:layout_marginTop="0dp"
+                android:background="@drawable/codigoseg"
+                android:ems="10"
+                android:inputType="number"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:textAlignment="viewStart"
+                android:layout_gravity="start"
+                />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/editText7"
+            android:layout_marginTop="53dp"
+            android:layout_toLeftOf="@+id/editText9"
+            android:layout_toStartOf="@+id/editText9"
+            android:background="@drawable/concluir" />
+
+    </LinearLayout>
+</ScrollView>
