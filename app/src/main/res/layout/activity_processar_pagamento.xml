@@ -81,8 +81,8 @@
                 android:inputType="number"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
-                android:textAlignment="viewStart"
                 android:layout_gravity="start"
+                android:textAlignment="viewStart"
                 />
 
         </RelativeLayout>
