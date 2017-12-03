@@ -30,7 +30,7 @@ public class Pedido
     public Pedido()
     {
         setId(-1);
-        setStatus(0);
+        setStatus(ItemPedido.ANDAMENTO);
         setNota(-1);
         setReclamacao("");
         items = new Vector<ItemPedido>();
@@ -58,8 +58,14 @@ public class Pedido
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(int status)
+    {
         this.status = status;
+
+        for(int i = 0; items != null && i < items.size(); i++)
+        {
+            items.get(i).setStatus(status);
+        }
     }
 
     public int getNota() {

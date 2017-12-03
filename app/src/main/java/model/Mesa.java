@@ -10,13 +10,15 @@ import java.util.Vector;
 public class Mesa
 {
     private int id;
+    private int rest_id; // id do restaurante
     //private boolean isOpen;
     //private Vector<Comanda>comandas;
 
-    public Mesa(int id/*, boolean isOpen, Vector<Comanda>comandas*/)
+    public Mesa(int id, int idRest/*, boolean isOpen, Vector<Comanda>comandas*/)
     {
         System.out.println("No construtor da classe Mesa");
         setId(id);
+        setRest_id(idRest);
         /*setOpen(isOpen);
         setComandas(comandas);*/
     }
@@ -28,9 +30,10 @@ public class Mesa
         setComandas(new Vector<Comanda>());
     }*/
 
-    public Mesa()
+    public Mesa(int idRest)
     {
         setId(-1);
+        setRest_id(idRest);
         /*setOpen(false);
         setComandas(new Vector<Comanda>());*/
     }
@@ -75,4 +78,12 @@ public class Mesa
     public void setComandas(Vector<Comanda> comandas) {
         this.comandas = comandas;
     }*/
+
+    public int getRest_id() {
+        return rest_id;
+    }
+
+    public void setRest_id(int rest_id) {
+        this.rest_id = rest_id;
+    }
 }

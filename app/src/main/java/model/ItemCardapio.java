@@ -1,5 +1,7 @@
 package model;
 
+import java.security.PublicKey;
+
 import Tools.StringParser;
 
 /**
@@ -14,10 +16,16 @@ public class ItemCardapio
     private String desc; //Descrição
     private double valor;
     private String ingred; // Ingredientes
-    private int tipo;
+    private int tipo; // 1: Comida, 2: Bebida, 3: Sobremesa
     private boolean isVisible; //Visivel no cardápio
+    private int id_cardapio;
 
-    public ItemCardapio(int id, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible)
+    public static int COMIDA = 1;
+    public static int BEBIDA = 2;
+    public static int SOBREMESA = 3;
+
+    public ItemCardapio(int id, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible,
+                        int id_cardapio)
     {
         setId(id);
         setNome(nome);
@@ -26,9 +34,10 @@ public class ItemCardapio
         setIngred(ingred);
         setTipo(tipo);
         setVisible(isVisible);
+        setId_cardapio(id_cardapio);
     }
 
-    public ItemCardapio(String nome, String desc, double valor, String ingred, int tipo, boolean isVisible)
+    public ItemCardapio(String nome, String desc, double valor, String ingred, int tipo, boolean isVisible, int id_cardapio)
     {
         setId(-1);
         setNome(nome);
@@ -37,6 +46,7 @@ public class ItemCardapio
         setIngred(ingred);
         setTipo(tipo);
         setVisible(isVisible);
+        setId_cardapio(id_cardapio);
     }
 
     public int getId() {
@@ -93,5 +103,13 @@ public class ItemCardapio
 
     public void setVisible(boolean visible) {
         isVisible = visible;
+    }
+
+    public int getId_cardapio() {
+        return id_cardapio;
+    }
+
+    public void setId_cardapio(int id_cardapio) {
+        this.id_cardapio = id_cardapio;
     }
 }

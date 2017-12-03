@@ -1,9 +1,12 @@
 package com.example.lucas.restaurante;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import java.io.Serializable;
 
 import bancodados.BancoDados;
 import bancodados.CardapioDAO;
@@ -15,6 +18,7 @@ import bancodados.RestauranteDAO;
 import model.Cardapio;
 import model.CartaoCredito;
 import model.Cliente;
+import model.ClienteLogado;
 import model.Endereco;
 import model.ItemCardapio;
 import model.Mesa;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     {
         System.out.println("Método login() da MainActivity()");
         Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
+        ClienteLogado.clienteLogado = cli;
         telaPrincipalActivity(cli.getId());
     }
 
@@ -71,47 +76,35 @@ public class MainActivity extends AppCompatActivity
                         "MG"));
 
         Cardapio cardapio = new Cardapio();
-        cardapio.addItemCardapio(new ItemCardapio("Coca Cola", "Coca gelada", 2.36, "Não tem ingredientes",
-                2, true));
-        cardapio.addItemCardapio(new ItemCardapio("Suco de uva", "Suco geladinho", 1.30,
-                "Suco natural", 2, true));
-        cardapio.addItemCardapio(new ItemCardapio("Picanha", "Picanha suculenta", 10.36, "",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Arroz", "Arroz fino", 8.6, "Arroz fino grão",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Feijão", "Feijão tropeiro", 10, "Feijão e tropeiro",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
-                3, true));
 
         rest.setCardapio(cardapio);
         int id = restDAO.inserirRestaurante(rest);
-        rest.addMesa(new Mesa(1));
-        mesaDAO.inserirMesa(new Mesa(1), id);
-        rest.addMesa(new Mesa(2));
-        mesaDAO.inserirMesa(new Mesa(2), id);
-        rest.addMesa(new Mesa(3));
-        mesaDAO.inserirMesa(new Mesa(3), id);
-        rest.addMesa(new Mesa(4));
-        mesaDAO.inserirMesa(new Mesa(4), id);
-        rest.addMesa(new Mesa(5));
-        mesaDAO.inserirMesa(new Mesa(5), id);
-        rest.addMesa(new Mesa(6));
-        mesaDAO.inserirMesa(new Mesa(6), id);
+        rest.addMesa(new Mesa(1, id));
+        mesaDAO.inserirMesa(new Mesa(1, id));
+        rest.addMesa(new Mesa(2, id));
+        mesaDAO.inserirMesa(new Mesa(2, id));
+        rest.addMesa(new Mesa(3, id));
+        mesaDAO.inserirMesa(new Mesa(3, id));
+        rest.addMesa(new Mesa(4, id));
+        mesaDAO.inserirMesa(new Mesa(4, id));
+        rest.addMesa(new Mesa(5, id));
+        mesaDAO.inserirMesa(new Mesa(5, id));
+        rest.addMesa(new Mesa(6, id));
+        mesaDAO.inserirMesa(new Mesa(6, id));
 
         int idCard = cardapioDAO.inserirCardapio(cardapio, id);
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Coca Cola", "Coca gelada", 2.36, "Não tem ingredientes",
-                2, true),idCard);
+                2, true, idCard));
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Suco de uva", "Suco geladinho", 1.30,
-                "Suco natural", 2, true),idCard);
+                "Suco natural", 2, true, idCard));
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Picanha", "Picanha suculenta", 10.36, "",
-                1, true),idCard);
+                1, true, idCard));
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Arroz", "Arroz fino", 8.6, "Arroz fino grão",
-                1, true),idCard);
+                1, true, idCard));
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Feijão", "Feijão tropeiro", 10, "Feijão e tropeiro",
-                1, true),idCard);
+                1, true, idCard));
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
-                3, true),idCard);
+                3, true, idCard));
 
     }
 }

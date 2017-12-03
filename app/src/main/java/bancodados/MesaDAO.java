@@ -21,21 +21,21 @@ public class MesaDAO
         setBd(bd);
     }
 
-    public int inserirMesa(Mesa mesa, int idRest)
+    public int inserirMesa(Mesa mesa)
     {
         String query = "INSERT INTO Mesa(Restaurante_id)" +
-                "VALUES(" + idRest + ")";
+                "VALUES(" + mesa.getRest_id() + ")";
         return bd.insertQuery(query);
     }
 
     public Mesa pesquisarMesaId(int id)
     {
-        String query = "SELECT id FROM Mesa WHERE id = " + id;
+        String query = "SELECT id, Restaurante_id FROM Mesa WHERE id = " + id;
         Cursor cursor = bd.selectQuery(query);
 
         if(cursor != null && cursor.moveToFirst())
         {
-            return new Mesa(id);
+            return new Mesa(id, Integer.parseInt(cursor.getString(cursor.getColumnIndex("Restaurante_id"))));
         }
         return null;
     }
@@ -44,7 +44,7 @@ public class MesaDAO
     {
         Vector<Mesa>mesas = new Vector<>();
 
-        String query = "SELECT id " +
+        String query = "SELECT id, Restaurante_id " +
                 "FROM Mesa " +
                 "WHERE Restaurante_id = " + idRest;
 
@@ -54,7 +54,8 @@ public class MesaDAO
         {
             do
             {
-                mesas.add(new Mesa(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")))));
+                mesas.add(new Mesa(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))),
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex("Restaurante_id")))));
             }while (cursor.moveToNext());
         }
         return mesas;
