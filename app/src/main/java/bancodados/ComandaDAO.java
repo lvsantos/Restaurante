@@ -17,12 +17,14 @@ public class ComandaDAO
 {
     private BancoDados bd;
     private PedidoDAO pedidoDAO;
+    private MesaDAO mesaDAO;
 
     public ComandaDAO(BancoDados bd)
     {
         System.out.println("Construtor da classe ComandaDAO");
         setBd(bd);
         setPedidoDAO(new PedidoDAO(bd));
+        setMesaDAO(new MesaDAO(bd));
     }
 
     public int inserirComanda(Comanda comanda, int idCli)
@@ -41,9 +43,10 @@ public class ComandaDAO
 
         if(cursor != null && cursor.moveToFirst())
         {
+            Mesa m = mesaDAO.pesquisarMesaId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Mesa_id"))));
             return new Comanda(id, Integer.parseInt(cursor.getString(cursor.getColumnIndex("status"))),
                     pedidoDAO.pesquisarTodosPedidosComanda(id),
-                    new Mesa(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Mesa_id")))));
+                    m);
         }
         return null;
     }
@@ -61,7 +64,7 @@ public class ComandaDAO
             return new Comanda(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))),
                     1,
                     pedidoDAO.pesquisarTodosPedidosComanda(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")))),
-                    new Mesa(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Mesa_id")))));
+                    mesaDAO.pesquisarMesaId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Mesa_id")))));
         }
         return null;
     }
@@ -130,5 +133,13 @@ public class ComandaDAO
 
     public void setPedidoDAO(PedidoDAO pedidoDAO) {
         this.pedidoDAO = pedidoDAO;
+    }
+
+    public MesaDAO getMesaDAO() {
+        return mesaDAO;
+    }
+
+    public void setMesaDAO(MesaDAO mesaDAO) {
+        this.mesaDAO = mesaDAO;
     }
 }

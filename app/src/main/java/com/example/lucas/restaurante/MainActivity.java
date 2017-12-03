@@ -33,16 +33,22 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Método onCreate da MainActivity()");
-        intent = new Intent(this, TelaPrincipalActivity.class);
+        //System.out.println("Método onCreate da MainActivity()");
+        //intent = new Intent(this, TelaPrincipalActivity.class);
         //gerarBaseDados();
     }
 
     public void login(View view)
     {
-        System.out.println("Método login() da MainActivity()");
+        /*System.out.println("Método login() da MainActivity()");
         Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
-        telaPrincipalActivity(cli.getId());
+        telaPrincipalActivity(cli.getId());*/
+        setContentView(R.layout.activity_login);
+    }
+
+    public void cardapio(View view)
+    {
+        setContentView(R.layout.activity_cardapio);
     }
 
     public void telaPrincipalActivity(int idCliente)
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Método para gerar base de dados nas tabelas para teste. (Excluir depois)
-    public void gerarBaseDados()
+    /*public void gerarBaseDados()
     {
         cliDao.inserirCliente(new Cliente("Lucas Valtudes Basílio dos Santos",
                 "119.888.266-24", "lvsantos", "123456", "lucasvbsantos@gmail.com",
@@ -113,5 +119,5 @@ public class MainActivity extends AppCompatActivity
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
                 3, true),idCard);
 
-    }
+    }*/
 }

@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by lucas on 29/11/17.
  * Classe que trata as interações do cliente
  */
 
-public class Cliente
+public class Cliente //implements Serializable
 {
     private int id;
     private String nomeComp;
@@ -64,6 +66,14 @@ public class Cliente
         comandaAberta = new Comanda(mesa);
     }
 
+    public void addItemPedido(ItemPedido item)
+    {
+        if(pedidoAberto == null)
+        {
+            pedidoAberto = new Pedido();
+        }
+        pedidoAberto.addItemPedido(item);
+    }
 
     //Métodos getters e setters
     public int getId() {

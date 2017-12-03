@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context="com.example.lucas.restaurante.PedidoActivity"
+    android:id="@+id/rl1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layoutPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nome_rest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:text="Restaurante: Rock bar"/>
+
+            <TextView
+                android:id="@+id/comanda_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:text="Comanda: 10"/>
+
+            <TextView
+                android:id="@+id/mesa_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:text="Mesa: 12"/>
+
+            <TextView
+                android:id="@+id/nome_cliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:text="Cliente: Lucas Valtudes Basílio dos Santos"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/valTot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:textAlignment="center"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/finalizarPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:layout_alignParentBottom="true"
+        android:padding="18dp"
+        android:text="Finalizar pedido"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:onClick="finalizarPedido"/>
+
+</RelativeLayout>

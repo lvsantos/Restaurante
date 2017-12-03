@@ -12,20 +12,27 @@ public class ItemPedido extends ItemCardapio
      * status = 0: Em andamento, 1: Aprovação pagamento, 2: Pagamento aprovado, 3: Em preparo, 4: Encaminhado, 5: Finalizado
      */
     private int status;
+    public static int ANDAMENTO = 0;
+    public  static int AGUARDANDO_APROV = 1;
+    public static int PGTO_APROV = 2;
+    public static int PREPARO = 3;
+    public static int ENCAMINHADO = 4;
+    public static int FINALIZADO = 5;
 
-    public ItemPedido (int idCardapio, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible,
-                       int idItemPedido, int status)
+    public ItemPedido (int idItemCardap, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible,
+                       int idCardapio, int idItemPedido, int status)
     {
-        super(idCardapio, nome, desc, valor, ingred, tipo, isVisible);
+        super(idItemCardap, nome, desc, valor, ingred, tipo, isVisible, idCardapio);
         setId(idItemPedido);
         setStatus(status);
     }
 
-    public ItemPedido(int idCardapio, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible)
+    public ItemPedido(int idItemCardap, String nome, String desc, double valor, String ingred, int tipo, boolean isVisible,
+                      int idCardapio)
     {
-        super(idCardapio, nome, desc, valor, ingred, tipo, isVisible);
+        super(idItemCardap, nome, desc, valor, ingred, tipo, isVisible, idCardapio);
         setId(-1);
-        setStatus(0);
+        setStatus(ANDAMENTO);
     }
 
     public int getIdPedido() {

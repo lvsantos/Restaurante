@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Restaurante</string>
+    <string name="Cardapio">Cardápio</string>
+    <string name="Login">Login</string>
 </resources>

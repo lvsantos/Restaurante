@@ -14,6 +14,7 @@ import bancodados.MesaDAO;
 import bancodados.RestauranteDAO;
 import model.Cardapio;
 import model.Cliente;
+import model.ClienteLogado;
 import model.Endereco;
 import model.ItemCardapio;
 import model.Mesa;
@@ -22,11 +23,11 @@ import model.Restaurante;
 public class AbrirComandaActivity extends AppCompatActivity
 {
 
-    private ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
+    //private ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
     private ComandaDAO comanDAO = new ComandaDAO(new BancoDados(this));
     private MesaDAO mesaDAO = new MesaDAO(new BancoDados(this));
     private Intent intent;
-    private Cliente cliLogado;
+    private Cliente cliLogado = ClienteLogado.clienteLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +35,7 @@ public class AbrirComandaActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abrir_comanda);
         System.out.println("Método onCreate da classe AbrirComandaActivity");
-        cliLogado = cliDao.pesquisarClienteId(getIntent().getIntExtra("idCli", 0));
+        //cliLogado = cliDao.pesquisarClienteId(getIntent().getIntExtra("idCli", 0));
     }
 
     public void abrirComanda(View view)
@@ -46,8 +47,10 @@ public class AbrirComandaActivity extends AppCompatActivity
         if(mesa != null)
         {
             cliLogado.abrirComandaIndiv(mesa);
-            comanDAO.inserirComanda(cliLogado.getComandaAberta(), cliLogado.getId());
-            cardapioActivity(cliLogado.getId());
+            int idComanda = comanDAO.inserirComanda(cliLogado.getComandaAberta(), cliLogado.getId());
+            cliLogado.getComandaAberta().setId(idComanda);
+            ClienteLogado.clienteLogado = cliLogado;
+            cardapioActivity();
         }
         else
         {
@@ -55,10 +58,11 @@ public class AbrirComandaActivity extends AppCompatActivity
         }
     }
 
-    public void cardapioActivity(int idCliente)
+    public void cardapioActivity()
     {
         intent = new Intent(this, CardapioActivity.class);
-        intent.putExtra("idCli", idCliente);
+        //intent.putExtra("idCli", idCliente);
+        intent.putExtra(CardapioActivity.intent1, 0);
         startActivity(intent);
     }
 

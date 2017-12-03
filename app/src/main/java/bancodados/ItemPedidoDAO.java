@@ -46,7 +46,8 @@ public class ItemPedidoDAO
             if(iC != null)
             {
                 return new ItemPedido(iC.getId(), iC.getNome(), iC.getDesc(), iC.getValor(), iC.getIngred(), iC.getTipo(),
-                        iC.isVisible()==1, id, Integer.parseInt(cursor.getString(cursor.getColumnIndex("status"))));
+                        iC.isVisible()==1, id, Integer.parseInt(cursor.getString(cursor.getColumnIndex("status"))),
+                        iC.getId_cardapio());
             }
         }
         return null;

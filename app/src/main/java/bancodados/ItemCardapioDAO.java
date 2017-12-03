@@ -21,18 +21,18 @@ public class ItemCardapioDAO
         setBd(bd);
     }
 
-    public int inserirItemCardapio(ItemCardapio item, int idCardapio)
+    public int inserirItemCardapio(ItemCardapio item)
     {
         String query = "INSERT INTO Item_cardapio(nome, descricao, valor, ingredientes, tipo, isVisible, Cardapio_id)" +
                 "VALUES(" + StringParser.getAspas(item.getNome()) + ", " + StringParser.getAspas(item.getDesc()) + ", " +
                 item.getValor() + ", " + StringParser.getAspas(item.getIngred()) + ", " + item.getTipo() + ", " +
-                item.isVisible() + ", " + idCardapio + ")";
+                item.isVisible() + ", " + item.getId_cardapio() + ")";
         return bd.insertQuery(query);
     }
 
     public ItemCardapio pesquisarItemCardapioId(int id)
     {
-        String query = "SELECT nome, descricao, valor, ingredientes, tipo, isVisible " +
+        String query = "SELECT nome, descricao, valor, ingredientes, tipo, isVisible, Cardapio_id " +
                 "FROM Item_cardapio " +
                 "WHERE id = " + id;
         Cursor cursor = bd.selectQuery(query);
@@ -44,7 +44,8 @@ public class ItemCardapioDAO
                     Double.parseDouble(cursor.getString(cursor.getColumnIndex("valor"))),
                     cursor.getString(cursor.getColumnIndex("ingredientes")),
                     Integer.parseInt(cursor.getString(cursor.getColumnIndex("tipo"))),
-                    Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("isVisible")))
+                    Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("isVisible"))),
+                    Integer.parseInt(cursor.getString(cursor.getColumnIndex("Cardapio_id")))
             );
         }
         return null;
@@ -57,6 +58,30 @@ public class ItemCardapioDAO
         String query = "SELECT id " +
                 "FROM Item_cardapio " +
                 "WHERE Cardapio_id = " + idCardapio;
+        Cursor cursor = bd.selectQuery(query);
+
+        if(cursor != null && cursor.moveToFirst())
+        {
+            do
+            {
+                ItemCardapio i = pesquisarItemCardapioId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))));
+                if (i != null)
+                {
+                    itens.add(i);
+                }
+            }while (cursor.moveToNext());
+        }
+        return itens;
+    }
+
+    public Vector<ItemCardapio> pesquisarTodosItensCardapioTipo(int idCardapio, int tipo)
+    {
+        Vector<ItemCardapio>itens = new Vector<ItemCardapio>();
+
+        String query = "SELECT id " +
+                "FROM Item_cardapio " +
+                "WHERE Cardapio_id = " + idCardapio +
+                " AND tipo = " + tipo;
         Cursor cursor = bd.selectQuery(query);
 
         if(cursor != null && cursor.moveToFirst())

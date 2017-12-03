@@ -3,65 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lucas.restaurante.MainActivity">
+    tools:context="com.example.lucas.restaurante.MainActivity"
+    android:background="@drawable/main">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="56dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
 
-    <ImageView android:src="@drawable/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal" />
-
-    <!-- Email Label -->
-    <!--<android.support.design.widget.TextInputLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"> -->
-        <EditText android:id="@+id/input_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email" />
-    <!--</android.support.design.widget.TextInputLayout> -->
+        android:layout_height="wrap_content">
 
-    <!-- Password Label -->
-    <!--<android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"> -->
-        <EditText android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"/>
-    <!--</android.support.design.widget.TextInputLayout>-->
+        <Button
+            android:id="@+id/btnCardapio"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btnLogin"
+            android:layout_toStartOf="@+id/btnLogin"
+            android:onClick="cardapio"
+            android:text="@string/Cardapio" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:padding="12dp"
-        android:text="Login"
-        android:onClick="login"/>
+        <Button
+            android:id="@+id/btnLogin"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:onClick="login"
+            android:text="@string/Login" />
+    </RelativeLayout>
 
-    <TextView android:id="@+id/link_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-
-        android:text="No account yet? Create one"
-        android:gravity="center"
-        android:textSize="16dip"/>
-
-</LinearLayout>
 </ScrollView>
