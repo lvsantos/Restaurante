@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Método para gerar base de dados nas tabelas para teste. (Excluir depois)
-    public void gerarBaseDados()
+    /*public void gerarBaseDados()
     {
         cliDao.inserirCliente(new Cliente("Lucas Valtudes Basílio dos Santos",
                 "119.888.266-24", "lvsantos", "123456", "lucasvbsantos@gmail.com",
@@ -119,5 +119,5 @@ public class MainActivity extends AppCompatActivity
         itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
                 3, true),idCard);
 
-    }
+    }*/
 }
