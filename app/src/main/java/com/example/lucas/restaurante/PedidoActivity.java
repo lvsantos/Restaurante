@@ -109,7 +109,7 @@ public class PedidoActivity extends AppCompatActivity
 
     private void pagamentoActivity()
     {
-        intent = new Intent(this, ProcessarPgtoActivity.class);
+        //intent = new Intent(this, ProcessarPgtoActivity.class);
         changeActivity();
     }
 }
