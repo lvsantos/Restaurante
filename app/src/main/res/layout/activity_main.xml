@@ -3,42 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lucas.restaurante.MainActivity">
+    tools:context="com.example.lucas.restaurante.MainActivity"
+    android:background="@drawable/main">
+
 
     <RelativeLayout
-        android:id="@+id/snack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/main">
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnCardapio"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btnLogin"
+            android:layout_toStartOf="@+id/btnLogin"
+            android:onClick="cardapio"
+            android:text="@string/Cardapio" />
 
         <Button
             android:id="@+id/btnLogin"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentTop="false"
-            android:layout_marginTop="49dp"
-            android:allowUndo="false"
+            style="@android:style/Widget.DeviceDefault.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:onClick="login"
-            android:shadowColor="#090909"
-            android:text="@string/Login"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnMenu"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:layout_below="@+id/btnLogin"
-            android:layout_marginTop="12dp"
-            android:onClick="login"
-            android:shadowColor="#090909"
-            android:text="@string/Cardapio"
-            android:textStyle="bold" />
+            android:text="@string/Login" />
     </RelativeLayout>
 
 </ScrollView>
