@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity
 
     public void login(View view)
     {
-        /*System.out.println("Método login() da MainActivity()");
+        System.out.println("Método login() da MainActivity()");
         Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
-        telaPrincipalActivity(cli.getId());*/
+        telaPrincipalActivity(cli.getId());
         setContentView(R.layout.activity_login);
     }
 
