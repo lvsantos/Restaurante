@@ -37,7 +37,8 @@
             android:text="Usuário"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
-            android:background="@drawable/borda"            android:inputType="text"/>
+            android:background="@drawable/borda"
+            android:inputType="text"/>
         <!--</android.support.design.widget.TextInputLayout> -->
 
         <!-- Password Label -->
@@ -77,7 +78,7 @@
             android:layout_marginBottom="24dp"
             android:text="Ainda não tem cadastro? Clique aqui"
             android:textAllCaps="false"
-            android:background="#FFFFFF"/>
+            android:background="@drawable/bordavazia"/>
 
     </LinearLayout>
 </ScrollView>

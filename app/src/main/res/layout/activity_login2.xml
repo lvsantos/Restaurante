@@ -34,7 +34,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:background="@drawable/usuario"
+            android:text="Usuário"
+            android:textColor="#918D8D"
+            android:paddingLeft="15dp"
+            android:background="@drawable/borda"
             android:inputType="text"/>
         <!--</android.support.design.widget.TextInputLayout> -->
 
@@ -49,7 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:inputType="textPassword"
-            android:background="@drawable/digitesenha"/>
+            android:text="Senha"
+            android:textColor="#918D8D"
+            android:paddingLeft="15dp"
+            android:background="@drawable/borda"/>
         <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
@@ -57,7 +63,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:background="@drawable/botaologin"
+            android:background="@drawable/botao"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
             android:padding="12dp"
             android:onClick="verifyLogin"/>
 
@@ -69,7 +77,9 @@
             android:layout_marginRight="35dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/cadastropreto"/>
+            android:text="Ainda não tem cadastro? Clique aqui"
+            android:textAllCaps="false"
+            android:background="@drawable/bordavazia"/>
 
     </LinearLayout>
 </ScrollView>
