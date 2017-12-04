@@ -7,5 +7,5 @@ package model;
 
 public class ClienteLogado
 {
-    public static Cliente clienteLogado;
+    public static Cliente clienteLogado = null;
 }
