@@ -15,6 +15,7 @@ import bancodados.RestauranteDAO;
 import model.Cardapio;
 import model.CartaoCredito;
 import model.Cliente;
+import model.ClienteLogado;
 import model.Endereco;
 import model.ItemCardapio;
 import model.Mesa;
@@ -41,9 +42,9 @@ public class MainActivity extends AppCompatActivity
     public void login(View view)
     {
         System.out.println("Método login() da MainActivity()");
-        Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
-        telaPrincipalActivity(cli.getId());
-        setContentView(R.layout.activity_login);
+        ClienteLogado.clienteLogado = cliDao.pesquisarClienteLogin("lvsantos");
+        telaPrincipalActivity();
+        //setContentView(R.layout.activity_login);
     }
 
     public void cardapio(View view)
@@ -51,9 +52,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_cardapio);
     }
 
-    public void telaPrincipalActivity(int idCliente)
+    public void telaPrincipalActivity()
     {
-        intent.putExtra("idCli", idCliente);
+        intent = new Intent(this, TelaPrincipalActivity.class);
         startActivity(intent);
     }
 
