@@ -25,32 +25,28 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
-                android:paddingBottom="5dp"
-                android:text="Restaurante: Rock bar"/>
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:id="@+id/comanda_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingBottom="5dp"
-                android:text="Comanda: 10"/>
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:id="@+id/mesa_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingBottom="5dp"
-                android:text="Mesa: 12"/>
+                android:paddingBottom="5dp" />
 
             <TextView
                 android:id="@+id/nome_cliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingBottom="5dp"
-                android:text="Cliente: Lucas Valtudes Basílio dos Santos"/>
+                android:paddingBottom="5dp"/>
 
         </LinearLayout>
 
