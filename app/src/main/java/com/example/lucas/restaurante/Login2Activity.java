@@ -47,6 +47,13 @@ public class Login2Activity extends AppCompatActivity
         changeActivity();
     }
 
+
+    public void redirecionaCadastroCliente(View view)
+    {
+        intent = new Intent(this, CadastroActivity.class);
+        changeActivity();
+    }
+
     private void errorMessage(String message)
     {
         Toast.makeText(Login2Activity.this, message, Toast.LENGTH_LONG).show();

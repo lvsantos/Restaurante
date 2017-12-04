@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lucas.restaurante.LoginActivity">
+    tools:context="com.example.lucas.restaurante.Login2Activity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -72,14 +72,16 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="24dp"
             android:text="Ainda não tem cadastro? Clique aqui"
             android:textAllCaps="false"
-            android:background="@drawable/bordavazia"/>
+            android:background="@drawable/bordavazia"
+            android:onClick="redirecionaCadastroCliente"/>
+
 
     </LinearLayout>
 </ScrollView>
