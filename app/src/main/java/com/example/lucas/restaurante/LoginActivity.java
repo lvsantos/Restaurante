@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import bancodados.BancoDados;
 import bancodados.ClienteDAO;
@@ -32,5 +33,9 @@ public class LoginActivity extends AppCompatActivity
     {
         //System.out.println("Método login() da MainActivity()");
         //Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
+        EditText login = (EditText) findViewById(R.id.usuario);
+        if (cliDao.pesquisarClienteLogin(login.getText().toString())!=null){
+          setContentView(R.layout.activity_abrir_comanda);
+        }
     }
 }
