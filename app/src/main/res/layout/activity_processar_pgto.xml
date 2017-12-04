@@ -26,17 +26,12 @@
             android:contentDescription="@string/title"
             app:srcCompat="@drawable/textotopo" />
 
-        <EditText
-            android:id="@+id/editText5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome"/> -->
 
         <TextView
             android:id="@+id/nome_cartao"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingTop="30dp"
+            android:paddingTop="50dp"
             android:paddingLeft="10dp"
             android:background="@drawable/nome"
             android:ems="10"
