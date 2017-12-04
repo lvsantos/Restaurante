@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lucas.restaurante.MainActivity"
-    android:background="@drawable/main">
+    android:background="@drawable/background">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="10dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/logo"
+            app:srcCompat="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/imagem"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/imagem" />
 
         <Button
             android:id="@+id/btnCardapio"
             style="@android:style/Widget.DeviceDefault.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/btnLogin"
-            android:layout_toStartOf="@+id/btnLogin"
-            android:onClick="cardapio"
-            android:text="@string/Cardapio" />
+            android:background="@drawable/botaocardapio"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="45dp"
+            android:onClick="cardapio"/>
 
         <Button
             android:id="@+id/btnLogin"
             style="@android:style/Widget.DeviceDefault.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:onClick="login"
-            android:text="@string/Login" />
-    </RelativeLayout>
+            android:background="@drawable/botaologin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="20dp"
+            android:onClick="login"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/cadastro"/>
+    </LinearLayout>
 
 </ScrollView>
