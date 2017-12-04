@@ -38,9 +38,9 @@ public class CadastroActivity extends AppCompatActivity
 
     public void redirecionaLogin(String login, String senha)
     {
-        intent = new Intent(this, LoginActivity.class);
-        intent.putExtra(LoginActivity.intent1, login);
-        intent.putExtra(LoginActivity.intent2, senha);
+        intent = new Intent(this, Login2Activity.class);
+        intent.putExtra(Login2Activity.intent1, login);
+        intent.putExtra(Login2Activity.intent2, senha);
         changeActivity();
     }
 
