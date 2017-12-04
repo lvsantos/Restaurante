@@ -6,26 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.Vector;
 
 import bancodados.BancoDados;
 import bancodados.RestauranteDAO;
-import model.Cliente;
+
 import model.ClienteLogado;
 import model.ItemPedido;
 import model.Restaurante;
 
 public class PedidoActivity extends AppCompatActivity
 {
-    private Cliente cliLogado = ClienteLogado.clienteLogado;
     private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
     private Intent intent;
     public static String intent1 = "idPedido";
@@ -35,22 +28,42 @@ public class PedidoActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
-        Restaurante rest = restDAO.pesquisarRestauranteId(cliLogado.getComandaAberta().getMesa().getRest_id());
+
+        Restaurante rest = restDAO.pesquisarRestauranteId(ClienteLogado.clienteLogado.getComandaAberta().getMesa().getRest_id());
         criarCabecalho(rest);
-        if(cliLogado.getPedidoAberto() != null)
+        if(ClienteLogado.clienteLogado.getPedidoAberto() != null)
         {
-            gerarListaDoPedido(cliLogado.getPedidoAberto().getItems());
+            gerarListaDoPedido(ClienteLogado.clienteLogado.getPedidoAberto().getItems());
         }
         else
         {
-            int id = getIntent().getIntExtra(intent1, 0);
-            gerarListaDoPedido(cliLogado.getComandaAberta().getPedidos().get(id).getItems());
+            int id = getIntent().getIntExtra(intent1, -1);
+            if(id != -1)
+            {
+                System.out.println(id);
+                System.out.println(ClienteLogado.clienteLogado.getComandaAberta().getPedidos().size());
+                gerarListaDoPedido(ClienteLogado.clienteLogado.getComandaAberta().getPedidos().get(id).getItems());
+            }
         }
+    }
+
+    private void changeActivity()
+    {
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
+    }
+
+    private void pagamentoActivity()
+    {
+        intent = new Intent(this, ProcessarPgtoActivity.class);
+        changeActivity();
     }
 
     public void finalizarPedido(View view)
     {
-        cliLogado.getPedidoAberto().setStatus(ItemPedido.AGUARDANDO_APROV);
+        ClienteLogado.clienteLogado.getPedidoAberto().setStatus(ItemPedido.AGUARDANDO_APROV);
         pagamentoActivity();
     }
 
@@ -64,11 +77,11 @@ public class PedidoActivity extends AppCompatActivity
             rest_nome.setText("Restaurante: " + rest.getNome());
         }
         TextView mesa_id = (TextView) findViewById(R.id.mesa_id);
-        mesa_id.setText(String.valueOf("Mesa: " + cliLogado.getComandaAberta().getMesa().getId()));
+        mesa_id.setText(String.valueOf("Mesa: " + ClienteLogado.clienteLogado.getComandaAberta().getMesa().getId()));
         TextView comanda_id = (TextView) findViewById(R.id.comanda_id);
-        comanda_id.setText(String.valueOf("Comanda: " + cliLogado.getComandaAberta().getId()));
+        comanda_id.setText(String.valueOf("Comanda: " +ClienteLogado.clienteLogado.getComandaAberta().getId()));
         TextView cliente_nome = (TextView) findViewById(R.id.nome_cliente);
-        cliente_nome.setText("Cliente: " + cliLogado.getNomeComp());
+        cliente_nome.setText("Cliente: " + ClienteLogado.clienteLogado.getNomeComp());
     }
 
     private void gerarListaDoPedido(Vector<ItemPedido> itensPed)
@@ -90,7 +103,7 @@ public class PedidoActivity extends AppCompatActivity
             TextView textViewPreco = (TextView) customView.getChildAt(2);
 
             textViewNome.setText(itensPed.get(i).getNome());
-            if(cliLogado.getPedidoAberto() != null)
+            if(ClienteLogado.clienteLogado.getPedidoAberto() != null)
             {
                 textViewIngred.setText(itensPed.get(i).getIngred());
             }
@@ -113,19 +126,8 @@ public class PedidoActivity extends AppCompatActivity
 
         //Gambiarra para não sobrescrever com o menu inferior
         TextView gam = new TextView(getApplicationContext());
-        gam.setTextSize(100);
+        gam.setTextSize(150);
         linearLayPrincip.addView(gam);
         //Fim gambiarra*/
-    }
-
-    private void changeActivity()
-    {
-        startActivity(intent);
-    }
-
-    private void pagamentoActivity()
-    {
-        intent = new Intent(this, ProcessarPgtoActivity.class);
-        changeActivity();
     }
 }

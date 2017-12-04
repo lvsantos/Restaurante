@@ -94,22 +94,22 @@ public class MainActivity extends AppCompatActivity
             cardapio.addItemCardapio(new ItemCardapio("Suco de abacaxi",
                                                       "Suco de abacaxi",
                                                       5.50,
-                                                      "",
+                                                      "Suco natural de abacaxi",
                                                       ItemCardapio.BEBIDA,
                                                       true,
                                                       cardapio.getId()));
-            cardapio.addItemCardapio(new ItemCardapio("Suco de abacaxi",
-                    "Suco de abacaxi",
+            cardapio.addItemCardapio(new ItemCardapio("Suco de laranja",
+                    "Suco de laranja",
                     5.50,
-                    "",
+                    "Suco natual de laranja",
                     ItemCardapio.BEBIDA,
                     true,
                     cardapio.getId()));
 
-            cardapio.addItemCardapio(new ItemCardapio("Brahma 600 ml",
+            cardapio.addItemCardapio(new ItemCardapio("Brahma",
                     "Brahma 600 ml",
                     9.90,
-                    "",
+                    "Brahma 600 ml",
                     ItemCardapio.BEBIDA,
                     true,
                     cardapio.getId()));
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
             cardapio.addItemCardapio(new ItemCardapio("Caipirinha",
                     "Caipirinha",
                     12,
-                    "",
+                    "Caipirinha 300 ml",
                     ItemCardapio.BEBIDA,
                     true,
                     cardapio.getId()));
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
             cardapio.addItemCardapio(new ItemCardapio("Coca-Cola",
                     "Coca-Cola",
                     4.50,
-                    "",
+                    "Coca-Cola 350 ml",
                     ItemCardapio.BEBIDA,
                     true,
                     cardapio.getId()));
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
             cardapio.addItemCardapio(new ItemCardapio("Espaguete à Bolonhesa",
                     "Espaguete à Bolonhesa",
                     7.80,
-                    "",
+                    "Espaguete à Bolonhesa com arroz",
                     ItemCardapio.COMIDA,
                     true,
                     cardapio.getId()));
@@ -163,9 +163,9 @@ public class MainActivity extends AppCompatActivity
                     cardapio.getId()));
 
             cardapio.addItemCardapio(new ItemCardapio("Lombo Grelhado",
-                    "Lombo, Arroz, Farofa, Alface, Tomate e Palmito",
-                    15.90,
                     "",
+                    15.90,
+                    "Lombo, Arroz, Farofa, Alface, Tomate e Palmito",
                     ItemCardapio.COMIDA,
                     true,
                     cardapio.getId()));

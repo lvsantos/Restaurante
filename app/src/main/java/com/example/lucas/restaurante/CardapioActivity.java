@@ -1,9 +1,11 @@
 package com.example.lucas.restaurante;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,11 +22,11 @@ import bancodados.RestauranteDAO;
 import model.Cliente;
 import model.ClienteLogado;
 import model.ItemCardapio;
+import model.ItemPedido;
 import model.Restaurante;
 
 public class CardapioActivity extends AppCompatActivity
 {
-    //private ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
     private RestauranteDAO restDAO = new RestauranteDAO((new BancoDados(this)));
     private ItemCardapioDAO itemCardDAO = new ItemCardapioDAO(new BancoDados(this));
     private Cliente cliLogado = ClienteLogado.clienteLogado;
@@ -41,21 +43,16 @@ public class CardapioActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardapio);
-        //cliLogado = cliDao.pesquisarClienteId(getIntent().getIntExtra("idCli", 0));
+
         tipo = getIntent().getIntExtra(intent1, 0);
 
-        if(cliLogado.getPedidoAberto() != null)
+        /*if(cliLogado.getPedidoAberto() != null)
         {
             Toast.makeText(CardapioActivity.this, "Olá " + cliLogado.getNomeComp() + "\n" + "Você acabou de pedir " +
                             cliLogado.getPedidoAberto().getItems().get(cliLogado.getPedidoAberto().getItems().size()-1).getNome() +
                             "Qtd: " + cliLogado.getPedidoAberto().getItems().size()
                     , Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            Toast.makeText(CardapioActivity.this, "Tipo = " + tipo
-                    , Toast.LENGTH_LONG).show();
-        }
+        }*/
         Restaurante rest = restDAO.pesquisarRestauranteId(cliLogado.getComandaAberta().getMesa().getRest_id());
         criarCabecalho(rest);
         if(tipo == 0)
@@ -67,11 +64,56 @@ public class CardapioActivity extends AppCompatActivity
             itensCardap = itemCardDAO.pesquisarTodosItensCardapioTipo(rest.getCardapio().getId(), tipo);
         }
 
-        gerarCardapio(itensCardap);
-        gerarMenuInferior();
+        gerarCardapio2(itensCardap);
+        //gerarMenuInferior();
     }
 
-    public void criarCabecalho(Restaurante rest)
+    private void changeActivity()
+    {
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
+    }
+
+    public void cardapioComidaActivity(View view)
+    {
+        intent = getIntent();
+        intent.putExtra(CardapioActivity.intent1, ItemCardapio.COMIDA);
+        finish();
+        changeActivity();
+    }
+
+    public void cardapioBebidaActivity(View view)
+    {
+        intent = getIntent();
+        intent.putExtra(CardapioActivity.intent1, ItemCardapio.BEBIDA);
+        finish();
+        changeActivity();
+    }
+
+    public void cardapioSobremesaActivity(View view)
+    {
+        intent = getIntent();
+        intent.putExtra(CardapioActivity.intent1, ItemCardapio.SOBREMESA);
+        finish();
+        changeActivity();
+    }
+
+    public void pedidoEmAbertoActivity(View view)
+    {
+        intent = new Intent(this, PedidoActivity.class);
+        changeActivity();
+    }
+
+    public void itemCardapioActivity(int iditem)
+    {
+        intent = new Intent(this, ItemCardapioActivity.class);
+        intent.putExtra(ItemCardapioActivity.intent1, iditem);
+        changeActivity();
+    }
+
+    private void criarCabecalho(Restaurante rest)
     {
         TextView rest_nome = (TextView) findViewById(R.id.nome_rest);
 
@@ -88,7 +130,53 @@ public class CardapioActivity extends AppCompatActivity
         cliente_nome.setText("Cliente: " + cliLogado.getNomeComp());
     }
 
-    private void gerarCardapio(final Vector<ItemCardapio>itensCardap)
+    private void gerarCardapio2(final Vector<ItemCardapio>itensCardap)
+    {
+        //Gera todos os itens do cardápio
+
+        LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout linearLayPrincip = (LinearLayout) findViewById(R.id.layoutPrincipal);
+
+        for (int i = 0; i < itensCardap.size(); i++)
+        {
+            final int index = i;
+            LinearLayout customView = (LinearLayout) inflater.inflate(R.layout.activity_custom_item, null);
+            customView.setClickable(true);
+            customView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    itemCardapioActivity(itensCardap.get(index).getId());
+                }
+            });
+
+            //Modifica a view com os dados dos itens do cardápio
+            //ImageView imageView = (ImageView) customView.getChildAt(0);
+            LinearLayout linearLayoutTextos = (LinearLayout) customView.getChildAt(1);
+            TextView textViewNome = (TextView) linearLayoutTextos.getChildAt(0);
+            TextView textViewIngred = (TextView) linearLayoutTextos.getChildAt(1);
+            TextView textViewPreco = (TextView) customView.getChildAt(2);
+            textViewPreco.setVisibility(View.INVISIBLE);
+
+            textViewNome.setText(itensCardap.get(i).getNome());
+            textViewIngred.setText(itensCardap.get(i).getIngred());
+            //textViewPreco.setText("R$" + itensPed.get(i).getValor());
+
+            linearLayPrincip.addView(customView);
+
+            //valTot += itensPed.get(i).getValor();
+        }
+
+        /*TextView textViewValTot = (TextView) findViewById(R.id.valTot);
+        textViewValTot.setText("VALOR TOTAL: R$" + valTot);*/
+
+        //Gambiarra para não sobrescrever com o menu inferior
+        TextView gam = new TextView(getApplicationContext());
+        gam.setTextSize(120);
+        linearLayPrincip.addView(gam);
+        //Fim gambiarra*/
+    }
+
+    /*private void gerarCardapio(final Vector<ItemCardapio>itensCardap)
     {
         //Gera todos os itens do cardápio
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.ll1_id);
@@ -148,13 +236,13 @@ public class CardapioActivity extends AppCompatActivity
             linearLayout.addView(linearLayout2);
         }
 
-        /*Gambiarra para não sobrescrever com o menu inferior */
+        //Gambiarra para não sobrescrever com o menu inferior
         TextView gam = new TextView(getApplicationContext());
         gam.setTextSize(55);
         linearLayout.addView(gam);
-        /*Fim gambiarra*/
-    }
-
+        Fim gambiarra
+    }*/
+/*
     private void gerarMenuInferior()
     {
         //Recupera o relative layout de toda a tela
@@ -226,49 +314,5 @@ public class CardapioActivity extends AppCompatActivity
         linearLayMenuInf.addView(buttonPed, buttonLayParam);
 
         relativeLayout.addView(linearLayMenuInf, linearLayParam);
-    }
-
-    private void changeActivity()
-    {
-        //intent.putExtra("idCli", cliLogado.getId());
-        startActivity(intent);
-    }
-
-    private void cardapioComidaActivity()
-    {
-        //intent = new Intent(this, CardapioComidaActivity.class);
-        intent = getIntent();
-        intent.putExtra(CardapioActivity.intent1, ItemCardapio.COMIDA);
-        finish();
-        changeActivity();
-    }
-
-    private void cardapioBebidaActivity()
-    {
-        intent = getIntent();
-        intent.putExtra(CardapioActivity.intent1, ItemCardapio.BEBIDA);
-        finish();
-        changeActivity();
-    }
-
-    private void cardapioSobremesaActivity()
-    {
-        intent = getIntent();
-        intent.putExtra(CardapioActivity.intent1, ItemCardapio.SOBREMESA);
-        finish();
-        changeActivity();
-    }
-
-    private void pedidoEmAbertoActivity()
-    {
-        intent = new Intent(this, PedidoActivity.class);
-        changeActivity();
-    }
-
-    private void itemCardapioActivity(int iditem)
-    {
-        intent = new Intent(this, ItemCardapioActivity.class);
-        intent.putExtra(ItemCardapioActivity.intent1, iditem);
-        changeActivity();
-    }
+    }*/
 }

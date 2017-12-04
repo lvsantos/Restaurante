@@ -13,17 +13,14 @@ import android.widget.TextView;
 import java.util.Vector;
 
 import bancodados.BancoDados;
-import bancodados.PedidoDAO;
 import bancodados.RestauranteDAO;
-import model.Cliente;
+
 import model.ClienteLogado;
-import model.ItemPedido;
 import model.Pedido;
 import model.Restaurante;
 
 public class ComandaActivity extends AppCompatActivity
 {
-    private Cliente cliLogado = ClienteLogado.clienteLogado;
     private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
     private Intent intent;
 
@@ -32,9 +29,10 @@ public class ComandaActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comanda);
-        Restaurante rest = restDAO.pesquisarRestauranteId(cliLogado.getComandaAberta().getMesa().getRest_id());
+
+        Restaurante rest = restDAO.pesquisarRestauranteId(ClienteLogado.clienteLogado.getComandaAberta().getMesa().getRest_id());
         criarCabecalho(rest);
-        gerarListaDaComanda(cliLogado.getComandaAberta().getPedidos());
+        gerarListaDaComanda(ClienteLogado.clienteLogado.getComandaAberta().getPedidos());
     }
 
     private void criarCabecalho(Restaurante rest)
@@ -47,11 +45,11 @@ public class ComandaActivity extends AppCompatActivity
             rest_nome.setText("Restaurante: " + rest.getNome());
         }
         TextView mesa_id = (TextView) findViewById(R.id.mesa_id);
-        mesa_id.setText(String.valueOf("Mesa: " + cliLogado.getComandaAberta().getMesa().getId()));
+        mesa_id.setText(String.valueOf("Mesa: " + ClienteLogado.clienteLogado.getComandaAberta().getMesa().getId()));
         TextView comanda_id = (TextView) findViewById(R.id.comanda_id);
-        comanda_id.setText(String.valueOf("Comanda: " + cliLogado.getComandaAberta().getId()));
+        comanda_id.setText(String.valueOf("Comanda: " + ClienteLogado.clienteLogado.getComandaAberta().getId()));
         TextView cliente_nome = (TextView) findViewById(R.id.nome_cliente);
-        cliente_nome.setText("Cliente: " + cliLogado.getNomeComp());
+        cliente_nome.setText("Cliente: " + ClienteLogado.clienteLogado.getNomeComp());
     }
 
     private void gerarListaDaComanda(Vector<Pedido> pedidos)
@@ -112,7 +110,11 @@ public class ComandaActivity extends AppCompatActivity
 
     private void changeActivity()
     {
-        startActivity(intent);
+
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
     }
 
     private void pedidoActivity(int idPed)

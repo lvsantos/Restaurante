@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/background_pag">
 
-
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
@@ -24,36 +23,104 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/ll1_id"
+            android:id="@+id/layoutPrincipal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="90dp">
 
             <TextView
                 android:id="@+id/nome_rest"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:id="@+id/comanda_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"/>
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:id="@+id/mesa_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"/>
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:id="@+id/nome_cliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"/>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:padding="18dp"
+            android:text="Comida"
+            android:textAllCaps="true"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="cardapioComidaActivity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:padding="18dp"
+            android:text="Bebida"
+            android:textSize="10sp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="cardapioBebidaActivity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:padding="18dp"
+            android:text="Sobremesa"
+            android:textAllCaps="true"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="cardapioSobremesaActivity"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:padding="18dp"
+            android:text="Pedido"
+            android:textSize="10sp"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="pedidoEmAbertoActivity"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

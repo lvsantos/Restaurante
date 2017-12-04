@@ -31,12 +31,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="50dp"
-            android:text="Nome Completo"
+            android:hint="Nome Completo"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
-            android:inputType="textPersonName"
-            />
+            android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/email"
@@ -45,7 +44,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
-            android:text="Email"
+            android:hint="Email"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
@@ -59,7 +58,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
-            android:text="CPF"
+            android:hint="CPF"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
@@ -74,7 +73,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Data de Nascimento"
+            android:hint="Data de Nascimento"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
@@ -87,7 +86,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
-            android:text="Sexo"
+            android:hint="Sexo"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"/>
@@ -100,7 +99,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Endereço"
+            android:hint="Endereço"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
@@ -124,7 +123,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_gravity="start"
-                android:text="Número"
+                android:hint="Número"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"
@@ -138,7 +137,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="start"
-                android:text="Complemento"
+                android:hint="Complemento"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"
@@ -153,7 +152,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/num"
                 android:layout_marginTop="20dp"
-                android:text="Bairro"
+                android:hint="Bairro"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"
@@ -168,7 +167,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/complemento"
                 android:layout_marginTop="20dp"
-                android:text="CEP"
+                android:hint="CEP"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"
@@ -183,7 +182,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/bairro"
                 android:layout_marginTop="20dp"
-                android:text="Cidade"
+                android:hint="Cidade"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"
@@ -198,10 +197,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/cep"
                 android:layout_marginTop="20dp"
-                android:text="Estado"
+                android:hint="Estado"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
-                android:background="@drawable/borda"                android:ems="10"
+                android:background="@drawable/borda"
+                android:ems="10"
                 android:inputType="text" />
 
             <EditText
@@ -212,10 +212,11 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/cidade"
                 android:layout_marginTop="20dp"
-                android:text="Telefone"
+                android:hint="Telefone"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
-                android:background="@drawable/borda"                android:ems="10"
+                android:background="@drawable/borda"
+                android:ems="10"
                 android:inputType="phone" />
 
             <EditText
@@ -226,10 +227,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/estado"
                 android:layout_marginTop="20dp"
-                android:text="Celular"
+                android:hint="Celular"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
-                android:background="@drawable/borda"                android:ems="10"
+                android:background="@drawable/borda"
+                android:ems="10"
                 android:inputType="phone" />
 
         </RelativeLayout>
@@ -242,10 +244,11 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Nome de usuário"
+            android:hint="Nome de usuário"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
-            android:background="@drawable/borda"            android:inputType="textPersonName" />
+            android:background="@drawable/borda"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/senha"
@@ -255,10 +258,11 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Senha"
+            android:hint="Senha"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
-            android:background="@drawable/borda"            android:inputType="textPassword" />
+            android:background="@drawable/borda"
+            android:inputType="textPassword" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -275,10 +279,11 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Nome Impresso no Cartão"
+            android:hint="Nome Impresso no Cartão"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
-            android:background="@drawable/borda"            android:inputType="textPersonName" />
+            android:background="@drawable/borda"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/num_cartao"
@@ -288,10 +293,11 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="15dp"
             android:ems="10"
-            android:text="Número do Cartão"
+            android:hint="Número do Cartão"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
-            android:background="@drawable/borda"            android:inputType="number" />
+            android:background="@drawable/borda"
+            android:inputType="number" />
 
 
         <RelativeLayout
@@ -312,7 +318,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_gravity="start"
-                android:text="Validade"
+                android:hint="Validade"
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"                android:ems="10"
@@ -325,7 +331,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="start"
-                android:text="Código de Seg."
+                android:hint="Código de Seg."
                 android:textColor="#918D8D"
                 android:paddingLeft="15dp"
                 android:background="@drawable/borda"                android:inputType="number" />

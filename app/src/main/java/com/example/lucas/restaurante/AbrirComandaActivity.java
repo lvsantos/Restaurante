@@ -61,24 +61,39 @@ public class AbrirComandaActivity extends AppCompatActivity
         Toast.makeText(AbrirComandaActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Método que verifica se um dados campo EditText foi preenchido pelo usuário
+     * @param text: Campo a ser verificado
+     * @return false, caso o campo foi preenchido. True, caso a campo não tenha sido preenchido
+     */
+    private boolean isEmpty(EditText text)
+    {
+        if (text.getText().toString().trim().length() > 0)
+            return false;
+        return true;
+    }
+
     public void abrirComanda(View view)
     {
 
         EditText idMesa = (EditText) findViewById(R.id.idMesa);
         //Verifica se a mesa digitada existe
-        Mesa mesa = mesaDAO.pesquisarMesaId(Integer.parseInt(idMesa.getText().toString()));
-        if(mesa != null)
+        if(!isEmpty(idMesa))
         {
-            System.out.println();
-            ClienteLogado.clienteLogado.abrirComandaIndiv(mesa);
-            int idComanda = comanDAO.inserirComanda(ClienteLogado.clienteLogado.getComandaAberta(),
-                    ClienteLogado.clienteLogado.getId());
-            ClienteLogado.clienteLogado.getComandaAberta().setId(idComanda);
-            cardapioActivity();
-        }
-        else
-        {
-            errorMessage("Mesa inexistente");
+            Mesa mesa = mesaDAO.pesquisarMesaId(Integer.parseInt(idMesa.getText().toString()));
+            if(mesa != null)
+            {
+                System.out.println();
+                ClienteLogado.clienteLogado.abrirComandaIndiv(mesa);
+                int idComanda = comanDAO.inserirComanda(ClienteLogado.clienteLogado.getComandaAberta(),
+                        ClienteLogado.clienteLogado.getId());
+                ClienteLogado.clienteLogado.getComandaAberta().setId(idComanda);
+                cardapioActivity();
+            }
+            else
+            {
+                errorMessage("Mesa inexistente");
+            }
         }
     }
 }

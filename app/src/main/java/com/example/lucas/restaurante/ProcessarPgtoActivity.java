@@ -10,13 +10,11 @@ import android.widget.Toast;
 import bancodados.BancoDados;
 import bancodados.ItemPedidoDAO;
 import bancodados.PedidoDAO;
-import model.Cliente;
 import model.ClienteLogado;
 import model.ItemPedido;
 
 public class ProcessarPgtoActivity extends AppCompatActivity
 {
-    private Cliente cliLogado = ClienteLogado.clienteLogado;
     private PedidoDAO pedDAO = new PedidoDAO(new BancoDados(this));
     private ItemPedidoDAO itemPedDAO = new ItemPedidoDAO(new BancoDados(this));
     private Intent intent;
@@ -29,6 +27,20 @@ public class ProcessarPgtoActivity extends AppCompatActivity
         preencheTela();
     }
 
+    private void changeActivity()
+    {
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
+    }
+
+    private void comandaActivity()
+    {
+        intent = new Intent(this, ComandaActivity.class);
+        changeActivity();
+    }
+
     private void preencheTela()
     {
         TextView textViewNomeCartao = (TextView) findViewById(R.id.nome_cartao);
@@ -36,44 +48,33 @@ public class ProcessarPgtoActivity extends AppCompatActivity
         TextView textViewDatValid = (TextView) findViewById(R.id.data_validade);
         TextView textViewCodSegur = (TextView) findViewById(R.id.cod_seguranca);
 
-        textViewNomeCartao.setText(cliLogado.getCartaoCred().getNomeTitular());
-        textViewNumCartao.setText(cliLogado.getCartaoCred().getNumero());
+        textViewNomeCartao.setText(ClienteLogado.clienteLogado.getCartaoCred().getNomeTitular());
+        textViewNumCartao.setText(ClienteLogado.clienteLogado.getCartaoCred().getNumero());
         textViewDatValid.setText("07/2022");
-        System.out.println(cliLogado.getCartaoCred().getCodSeguranca());
-        textViewCodSegur.setText(String.valueOf(cliLogado.getCartaoCred().getCodSeguranca()));
+        System.out.println(ClienteLogado.clienteLogado.getCartaoCred().getCodSeguranca());
+        textViewCodSegur.setText(String.valueOf(ClienteLogado.clienteLogado.getCartaoCred().getCodSeguranca()));
     }
 
     public void concluirPagamento(View view)
     {
-        cliLogado.getPedidoAberto().setStatus(ItemPedido.PGTO_APROV);
-        int idPed = pedDAO.inserirPedido(cliLogado.getPedidoAberto(), cliLogado.getComandaAberta().getId());
-        cliLogado.getPedidoAberto().setId(idPed);
+        ClienteLogado.clienteLogado.getPedidoAberto().setStatus(ItemPedido.PGTO_APROV);
+        int idPed = pedDAO.inserirPedido(ClienteLogado.clienteLogado.getPedidoAberto(),
+                                         ClienteLogado.clienteLogado.getComandaAberta().getId());
+        ClienteLogado.clienteLogado.getPedidoAberto().setId(idPed);
 
-        for(int i = 0; i < cliLogado.getPedidoAberto().getItems().size(); i++)
+        for(int i = 0; i < ClienteLogado.clienteLogado.getPedidoAberto().getItems().size(); i++)
         {
-            int idItem = itemPedDAO.inserirItemPedido(cliLogado.getPedidoAberto().getItems().get(i),
-                    cliLogado.getPedidoAberto().getId());
-            cliLogado.getPedidoAberto().getItems().get(i).setId(idItem);
+            int idItem = itemPedDAO.inserirItemPedido(ClienteLogado.clienteLogado.getPedidoAberto().getItems().get(i),
+                                                      ClienteLogado.clienteLogado.getPedidoAberto().getId());
+            ClienteLogado.clienteLogado.getPedidoAberto().getItems().get(i).setId(idItem);
         }
 
-        cliLogado.getComandaAberta().addPedido(cliLogado.getPedidoAberto());
-        cliLogado.setPedidoAberto(null);
-        ClienteLogado.clienteLogado = cliLogado;
+        ClienteLogado.clienteLogado.getComandaAberta().addPedido(ClienteLogado.clienteLogado.getPedidoAberto());
+        ClienteLogado.clienteLogado.setPedidoAberto(null);
 
         Toast.makeText(ProcessarPgtoActivity.this,
-                cliLogado.getNomeComp() + "\nSeu pagamento foi processado com sucesso",
+                ClienteLogado.clienteLogado.getNomeComp() + "\nSeu pagamento foi processado com sucesso",
                 Toast.LENGTH_LONG).show();
         comandaActivity();
-    }
-
-    private void changeActivity()
-    {
-        startActivity(intent);
-    }
-
-    private void comandaActivity()
-    {
-        intent = new Intent(this, ComandaActivity.class);
-        changeActivity();
     }
 }

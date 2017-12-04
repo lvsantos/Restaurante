@@ -18,7 +18,7 @@
         android:src="@drawable/comida_web"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:orientation="vertical">
@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="20dp"
-        android:paddingLeft="5dp"
         android:text="R$76,89" />
 
 </LinearLayout>
