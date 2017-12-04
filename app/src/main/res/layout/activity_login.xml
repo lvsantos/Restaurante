@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="Usuário"
+            android:hint="Usuário"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:inputType="textPassword"
-            android:text="Senha"
+            android:hint="Senha"
             android:textColor="#918D8D"
             android:paddingLeft="15dp"
             android:background="@drawable/borda"/>       <!--</android.support.design.widget.TextInputLayout>-->

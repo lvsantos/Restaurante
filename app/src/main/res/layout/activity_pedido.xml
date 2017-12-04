@@ -17,6 +17,17 @@
         android:layout_marginTop="40dp"
         android:contentDescription="@string/Cardapio"
         app:srcCompat="@drawable/cardapio"/>
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pag">
+
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/seupedido" />
 
     <ScrollView
         android:layout_width="match_parent"
