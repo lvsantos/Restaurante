@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import bancodados.BancoDados;
@@ -54,7 +55,8 @@ public class Login2Activity extends AppCompatActivity
     public void verifyLogin(View view)
     {
         //System.out.println("Método login() da MainActivity()");
-        Cliente cli = cliDao.pesquisarClienteLogin("lsantos");
+        EditText login = (EditText) findViewById(R.id.usuario);
+        Cliente cli = cliDao.pesquisarClienteLogin(login.getText().toString());
         if(cli != null)
         {
             ClienteLogado.clienteLogado = cli;
