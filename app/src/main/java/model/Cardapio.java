@@ -30,7 +30,7 @@ public class Cardapio
         setItensCardap(itensCardap);
     }
 
-    public void     addItemCardapio(ItemCardapio item)
+    public void addItemCardapio(ItemCardapio item)
     {
         itensCardap.add(item);
     }

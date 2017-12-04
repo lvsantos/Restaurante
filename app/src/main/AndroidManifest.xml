@@ -22,6 +22,11 @@
         <activity android:name=".ItemCardapioActivity" />
         <activity android:name=".PedidoActivity" />
         <activity android:name=".CustomItemActivity" />
+        <activity android:name=".ProcessarPgtoActivity" />
+        <activity android:name=".ComandaActivity" />
+        <activity android:name=".CustomPedidoActivity" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".Login2Activity"></activity>
     </application>
 
 </manifest>

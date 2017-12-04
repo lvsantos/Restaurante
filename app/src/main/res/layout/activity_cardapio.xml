@@ -7,9 +7,19 @@
         tools:context="com.example.lucas.restaurante.CardapioActivity"
         android:id="@+id/rl1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_pag">
 
-    <ScrollView
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/Cardapio"
+            app:srcCompat="@drawable/cardapio" />
+
+        <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

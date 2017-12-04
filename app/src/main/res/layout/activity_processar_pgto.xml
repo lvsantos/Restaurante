@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_pag">
+    android:background="@drawable/background_pag"
+    tools:context="com.example.lucas.restaurante.ProcessarPgtoActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
@@ -23,25 +25,27 @@
             app:srcCompat="@drawable/textotopo"
             android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:id="@+id/editText5"
+        <TextView
+            android:id="@+id/nome_cartao"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="60dp"
+            android:paddingTop="30dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/nome"
             android:ems="10"
             android:layout_marginTop="10dp"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editText6"
+        <TextView
+            android:id="@+id/num_cartao"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="60dp"
             android:layout_marginTop="25dp"
+            android:paddingTop="30dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/numero"
             android:ems="10"
             android:inputType="number" />
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -53,11 +57,12 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="0dp">
 
-
-            <EditText
-                android:id="@+id/editText7"
+            <TextView
+                android:id="@+id/data_validade"
                 android:layout_width="140dp"
-                android:layout_height="81dp"
+                android:layout_height="60dp"
+                android:paddingTop="30dp"
+                android:paddingLeft="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -66,13 +71,14 @@
                 android:ems="10"
                 android:inputType="date" />
 
-            <EditText
-                android:id="@+id/editText9"
+            <TextView
+                android:id="@+id/cod_seguranca"
                 android:layout_width="140dp"
-                android:layout_height="100dp"
+                android:layout_height="81dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="0dp"
+                android:paddingTop="45dp"
+                android:paddingLeft="10dp"
                 android:background="@drawable/codigoseg"
                 android:ems="10"
                 android:inputType="number"
@@ -89,8 +95,15 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="53dp"
-            android:background="@drawable/concluir" />
+            android:layout_alignTop="@+id/editText7"
+            android:layout_marginTop="80dp"
+            android:layout_toLeftOf="@+id/editText9"
+            android:layout_toStartOf="@+id/editText9"
+            android:text="CONCLUIR PAGAMENTO"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:background="@drawable/botao"
+            android:onClick="concluirPagamento"/>
 
     </LinearLayout>
 </ScrollView>

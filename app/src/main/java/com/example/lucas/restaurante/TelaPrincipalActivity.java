@@ -31,13 +31,12 @@ public class TelaPrincipalActivity extends AppCompatActivity {
 
     public void abrirComanda(View view)
     {
-        abrirComandaActivity(cliLogado.getId());
+        abrirComandaActivity();
     }
 
-    public void abrirComandaActivity(int idCliente)
+    public void abrirComandaActivity()
     {
         intent = new Intent(this, AbrirComandaActivity.class);
-        intent.putExtra("idCli", idCliente);
         startActivity(intent);
     }
 }

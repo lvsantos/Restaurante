@@ -30,6 +30,11 @@ public class Comanda
         setMesa(mesa);
     }
 
+    public void addPedido(Pedido pedido)
+    {
+        pedidos.add(pedido);
+    }
+
     //Métodos getters e setters
 
     public int getId() {

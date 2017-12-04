@@ -7,14 +7,10 @@ import android.view.View;
 
 import bancodados.BancoDados;
 import bancodados.CardapioDAO;
-import bancodados.ClienteDAO;
-
 import bancodados.ItemCardapioDAO;
 import bancodados.MesaDAO;
 import bancodados.RestauranteDAO;
 import model.Cardapio;
-import model.CartaoCredito;
-import model.Cliente;
 import model.Endereco;
 import model.ItemCardapio;
 import model.Mesa;
@@ -22,7 +18,6 @@ import model.Restaurante;
 
 public class MainActivity extends AppCompatActivity
 {
-    ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
     private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
     private MesaDAO mesaDAO = new MesaDAO(new BancoDados(this));
     private CardapioDAO cardapioDAO = new CardapioDAO(new BancoDados(this));
@@ -30,94 +25,169 @@ public class MainActivity extends AppCompatActivity
     Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //System.out.println("Método onCreate da MainActivity()");
-        //intent = new Intent(this, TelaPrincipalActivity.class);
-        //gerarBaseDados();
+        gerarBaseDados();
     }
 
-    public void login(View view)
+    private void changeActivity()
     {
-        System.out.println("Método login() da MainActivity()");
-        Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
-        telaPrincipalActivity(cli.getId());
-        setContentView(R.layout.activity_login);
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
     }
 
-    public void cardapio(View view)
+    public void redirecionaLogin(View view)
     {
-        setContentView(R.layout.activity_cardapio);
+        intent = new Intent(this, Login2Activity.class);
+        changeActivity();
     }
 
-    public void telaPrincipalActivity(int idCliente)
+    public void redirecionaAbrirComanda(View view)
     {
-        intent.putExtra("idCli", idCliente);
+        intent = new Intent(this, AbrirComandaActivity.class);
+        changeActivity();
+    }
+
+    public void redirecionaCadastroCliente(View view)
+    {
+        intent = new Intent(this, CadastroActivity.class);
+        changeActivity();
+    }
+
+    /*public void telaPrincipalActivity()
+    {
+        intent = new Intent(this, TelaPrincipalActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     //Método para gerar base de dados nas tabelas para teste. (Excluir depois)
-    /*public void gerarBaseDados()
+    public void gerarBaseDados()
     {
-        cliDao.inserirCliente(new Cliente("Lucas Valtudes Basílio dos Santos",
-                "119.888.266-24", "lvsantos", "123456", "lucasvbsantos@gmail.com",
-                new Endereco("30640095", "Caetano de azeredo", 94, "Casa", "BH", "MG"),
-                "26/12/1996", 'M', "64648-9810",
-                new CartaoCredito("455445504", 485, 2, "Lucas V B Santos")));
-        cliDao.inserirCliente(new Cliente("Vitor Valtudes Basílio dos Santos",
-                "265.658.256-22", "viturino", "12345678", "vitor_valtudes64@gmail.com",
-                new Endereco("30640095", "Caetano de azeredo", 94, "Casa", "BH", "MG"),
-                "26/12/1996", 'M', "64648-9810",
-                new CartaoCredito("455445504", 485, 2, "Vitinho Santos")));
+        if(restDAO.pesquisarRestauranteId(1) == null)
+        {
+            Restaurante rest = new Restaurante("Restaurante Lab II",
+                                               "Laboratório de projetos II",
+                                               "164644646",
+                                               "rockbar",
+                                               "123",
+                                               "rock@gmail.com",
+                                               "56454445",
+                                               new Endereco("646464646",
+                                                            "Rua tal",
+                                                            25,
+                                                            "",
+                                                            "BH",
+                                                            "MG"
+                                                           )
+                                              );
+            int id = restDAO.inserirRestaurante(rest);
+            rest.setId(id);
+            Cardapio cardapio = new Cardapio();
+            int idCard = cardapioDAO.inserirCardapio(cardapio, id);
+            cardapio.setId(idCard);
+            rest.setCardapio(cardapio);
 
-        Restaurante rest = new Restaurante("Rock Bar", "Rock Bar LTDA", "164644646", "rockbar",
-                "123", "rock@gmail.com", "56454445",
-                new Endereco("646464646", "Rua tal", 25, "", "BH",
-                        "MG"));
+            cardapio.addItemCardapio(new ItemCardapio("Suco de abacaxi",
+                                                      "Suco de abacaxi",
+                                                      5.50,
+                                                      "",
+                                                      ItemCardapio.BEBIDA,
+                                                      true,
+                                                      cardapio.getId()));
+            cardapio.addItemCardapio(new ItemCardapio("Suco de abacaxi",
+                    "Suco de abacaxi",
+                    5.50,
+                    "",
+                    ItemCardapio.BEBIDA,
+                    true,
+                    cardapio.getId()));
 
-        Cardapio cardapio = new Cardapio();
-        cardapio.addItemCardapio(new ItemCardapio("Coca Cola", "Coca gelada", 2.36, "Não tem ingredientes",
-                2, true));
-        cardapio.addItemCardapio(new ItemCardapio("Suco de uva", "Suco geladinho", 1.30,
-                "Suco natural", 2, true));
-        cardapio.addItemCardapio(new ItemCardapio("Picanha", "Picanha suculenta", 10.36, "",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Arroz", "Arroz fino", 8.6, "Arroz fino grão",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Feijão", "Feijão tropeiro", 10, "Feijão e tropeiro",
-                1, true));
-        cardapio.addItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
-                3, true));
+            cardapio.addItemCardapio(new ItemCardapio("Brahma 600 ml",
+                    "Brahma 600 ml",
+                    9.90,
+                    "",
+                    ItemCardapio.BEBIDA,
+                    true,
+                    cardapio.getId()));
 
-        rest.setCardapio(cardapio);
-        int id = restDAO.inserirRestaurante(rest);
-        rest.addMesa(new Mesa(1));
-        mesaDAO.inserirMesa(new Mesa(1), id);
-        rest.addMesa(new Mesa(2));
-        mesaDAO.inserirMesa(new Mesa(2), id);
-        rest.addMesa(new Mesa(3));
-        mesaDAO.inserirMesa(new Mesa(3), id);
-        rest.addMesa(new Mesa(4));
-        mesaDAO.inserirMesa(new Mesa(4), id);
-        rest.addMesa(new Mesa(5));
-        mesaDAO.inserirMesa(new Mesa(5), id);
-        rest.addMesa(new Mesa(6));
-        mesaDAO.inserirMesa(new Mesa(6), id);
+            cardapio.addItemCardapio(new ItemCardapio("Caipirinha",
+                    "Caipirinha",
+                    12,
+                    "",
+                    ItemCardapio.BEBIDA,
+                    true,
+                    cardapio.getId()));
 
-        int idCard = cardapioDAO.inserirCardapio(cardapio, id);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Coca Cola", "Coca gelada", 2.36, "Não tem ingredientes",
-                2, true),idCard);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Suco de uva", "Suco geladinho", 1.30,
-                "Suco natural", 2, true),idCard);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Picanha", "Picanha suculenta", 10.36, "",
-                1, true),idCard);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Arroz", "Arroz fino", 8.6, "Arroz fino grão",
-                1, true),idCard);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Feijão", "Feijão tropeiro", 10, "Feijão e tropeiro",
-                1, true),idCard);
-        itemCardapioDAO.inserirItemCardapio(new ItemCardapio("Petit Gatot", "Sobremesa francesa", 26.6, "Chocolate",
-                3, true),idCard);
+            cardapio.addItemCardapio(new ItemCardapio("Fritas 750g",
+                    "Fritas 750g",
+                    20,
+                    "Batata fritas com bacon",
+                    ItemCardapio.COMIDA,
+                    true,
+                    cardapio.getId()));
 
-    }*/
+            cardapio.addItemCardapio(new ItemCardapio("X-egg",
+                    "X-egg",
+                    11,
+                    "Pão, ovo, hamburger, queijo, presunto, tomate e alface",
+                    ItemCardapio.COMIDA,
+                    true,
+                    cardapio.getId()));
+
+            cardapio.addItemCardapio(new ItemCardapio("Coca-Cola",
+                    "Coca-Cola",
+                    4.50,
+                    "",
+                    ItemCardapio.BEBIDA,
+                    true,
+                    cardapio.getId()));
+
+            cardapio.addItemCardapio(new ItemCardapio("Espaguete à Bolonhesa",
+                    "Espaguete à Bolonhesa",
+                    7.80,
+                    "",
+                    ItemCardapio.COMIDA,
+                    true,
+                    cardapio.getId()));
+
+            cardapio.addItemCardapio(new ItemCardapio("Canelone",
+                    "",
+                    5.50,
+                    "Cannelone Presunto e Mussarela",
+                    ItemCardapio.COMIDA,
+                    true,
+                    cardapio.getId()));
+
+            cardapio.addItemCardapio(new ItemCardapio("Lombo Grelhado",
+                    "Lombo, Arroz, Farofa, Alface, Tomate e Palmito",
+                    15.90,
+                    "",
+                    ItemCardapio.COMIDA,
+                    true,
+                    cardapio.getId()));
+
+            for(int i = 0; i < cardapio.getItensCardap().size(); i++)
+            {
+                itemCardapioDAO.inserirItemCardapio(cardapio.getItensCardap().get(i));
+            }
+
+            rest.addMesa(new Mesa(rest.getId()));
+            rest.addMesa(new Mesa(rest.getId()));
+            rest.addMesa(new Mesa(rest.getId()));
+            rest.addMesa(new Mesa(rest.getId()));
+            rest.addMesa(new Mesa(rest.getId()));
+            rest.addMesa(new Mesa(rest.getId()));
+
+            for(int i = 0; i < rest.getMesas().size(); i++)
+            {
+                mesaDAO.inserirMesa(rest.getMesas().get(i));
+            }
+
+        }
+
+    }
 }

@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import bancodados.BancoDados;
 import bancodados.ClienteDAO;
+import model.Cliente;
+import model.ClienteLogado;
 
-public class LoginActivity extends AppCompatActivity
+public class Login2Activity extends AppCompatActivity
 {
     private ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
     private Intent intent;
@@ -28,9 +31,38 @@ public class LoginActivity extends AppCompatActivity
         //gerarBaseDados();
     }
 
+    private void changeActivity()
+    {
+        if (intent != null)
+        {
+            finish();
+            startActivity(intent);
+        }
+    }
+
+    private void abrirComandaActivity()
+    {
+        intent = new Intent(this, AbrirComandaActivity.class);
+        changeActivity();
+    }
+
+    private void errorMessage(String message)
+    {
+        Toast.makeText(Login2Activity.this, message, Toast.LENGTH_LONG).show();
+    }
+
     public void verifyLogin(View view)
     {
         //System.out.println("Método login() da MainActivity()");
-        //Cliente cli = cliDao.pesquisarClienteLogin("lvsantos");
+        Cliente cli = cliDao.pesquisarClienteLogin("lsantos");
+        if(cli != null)
+        {
+            ClienteLogado.clienteLogado = cli;
+            abrirComandaActivity();
+        }
+        else
+        {
+            errorMessage("Cliente inexistente");
+        }
     }
 }

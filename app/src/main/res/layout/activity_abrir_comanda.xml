@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,24 +12,37 @@
         android:layout_height="match_parent"
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:background="@drawable/background_pag">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/title"
+            app:srcCompat="@drawable/abrircomanda" />
+
 
         <EditText
             android:id="@+id/idMesa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="125dp"
             android:layout_marginBottom="16dp"
-            android:hint="Digite o número da mesa para abrir a comanda"/>
+            android:hint="Digite o número da mesa para abrir a comanda"
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/btn_abrir_comanda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/botao"
+            android:text="PRONTO"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:padding="12dp"
-            android:text="Abrir comanda"
             android:onClick="abrirComanda"/>
 
     </LinearLayout>

@@ -2,56 +2,39 @@ package com.example.lucas.restaurante;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Vector;
 
 import bancodados.BancoDados;
+import bancodados.PedidoDAO;
 import bancodados.RestauranteDAO;
 import model.Cliente;
 import model.ClienteLogado;
 import model.ItemPedido;
+import model.Pedido;
 import model.Restaurante;
 
-public class PedidoActivity extends AppCompatActivity
+public class ComandaActivity extends AppCompatActivity
 {
     private Cliente cliLogado = ClienteLogado.clienteLogado;
     private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
     private Intent intent;
-    public static String intent1 = "idPedido";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pedido);
+        setContentView(R.layout.activity_comanda);
         Restaurante rest = restDAO.pesquisarRestauranteId(cliLogado.getComandaAberta().getMesa().getRest_id());
         criarCabecalho(rest);
-        if(cliLogado.getPedidoAberto() != null)
-        {
-            gerarListaDoPedido(cliLogado.getPedidoAberto().getItems());
-        }
-        else
-        {
-            int id = getIntent().getIntExtra(intent1, 0);
-            gerarListaDoPedido(cliLogado.getComandaAberta().getPedidos().get(id).getItems());
-        }
-    }
-
-    public void finalizarPedido(View view)
-    {
-        cliLogado.getPedidoAberto().setStatus(ItemPedido.AGUARDANDO_APROV);
-        pagamentoActivity();
+        gerarListaDaComanda(cliLogado.getComandaAberta().getPedidos());
     }
 
     private void criarCabecalho(Restaurante rest)
@@ -71,46 +54,55 @@ public class PedidoActivity extends AppCompatActivity
         cliente_nome.setText("Cliente: " + cliLogado.getNomeComp());
     }
 
-    private void gerarListaDoPedido(Vector<ItemPedido> itensPed)
+    private void gerarListaDaComanda(Vector<Pedido> pedidos)
     {
-        double valTot = 0;
-        //Gera todos os itens do cardápio
+        //Gera todos os pedidos da comanda
 
         LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout linearLayPrincip = (LinearLayout) findViewById(R.id.layoutPrincipal);
 
-        for (int i = 0; i < itensPed.size(); i++) {
-            LinearLayout customView = (LinearLayout) inflater.inflate(R.layout.activity_custom_item, null);
+        for (int i = 0; pedidos != null && i < pedidos.size(); i++)
+        {
+            final int indexPed = i; //Utilizada caso seja clicado em um pedido
+            LinearLayout customView = (LinearLayout) inflater.inflate(R.layout.activity_custom_pedido, null);
+            customView.setClickable(true);
+            customView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    pedidoActivity(indexPed);
+                }
+            });
 
-            //Modifica a view com os dados dos itens do pedido
-            //ImageView imageView = (ImageView) customView.getChildAt(0);
-            LinearLayout linearLayoutTextos = (LinearLayout) customView.getChildAt(1);
-            TextView textViewNome = (TextView) linearLayoutTextos.getChildAt(0);
-            TextView textViewIngred = (TextView) linearLayoutTextos.getChildAt(1);
-            TextView textViewPreco = (TextView) customView.getChildAt(2);
+            //Modifica a view com os dados dos pedidos
+            TextView textViewNumPed = (TextView) customView.getChildAt(0);
+            TextView textViewQtdItens = (TextView) customView.getChildAt(1);
+            TextView textViewValTot = (TextView) customView.getChildAt(2);
+            TextView textViewStatusPed = (TextView) customView.getChildAt(3);
 
-            textViewNome.setText(itensPed.get(i).getNome());
-            if(cliLogado.getPedidoAberto() != null)
+            textViewNumPed.setText("Número do pedido :" + pedidos.get(i).getId());
+            textViewQtdItens.setText("Quantidade de itens: " + pedidos.get(i).getItems().size());
+            double valTot = 0;
+            for(int j = 0; j < pedidos.get(i).getItems().size(); j++)
             {
-                textViewIngred.setText(itensPed.get(i).getIngred());
+                valTot += pedidos.get(i).getItems().get(j).getValor();
+            }
+            textViewValTot.setText("Valor: R$" + valTot);
+            textViewStatusPed.setText("Status: " + pedidos.get(i).getStatusText());
+
+            //Verifica a cor de fundo do pedido
+            if(i % 2 == 0)
+            {
+                customView.setBackgroundColor(Color.RED);
             }
             else
             {
-                textViewIngred.setText(itensPed.get(i).getStatusText());
-                TextView buttonFinalizarPed = (TextView) findViewById(R.id.finalizarPedido);
-                buttonFinalizarPed.setVisibility(View.INVISIBLE);
+                customView.setBackgroundColor(Color.BLUE);
             }
 
-            textViewPreco.setText("R$" + itensPed.get(i).getValor());
-
             linearLayPrincip.addView(customView);
-
-            valTot += itensPed.get(i).getValor();
         }
 
-        TextView textViewValTot = (TextView) findViewById(R.id.valTot);
-        textViewValTot.setText("VALOR TOTAL: R$" + valTot);
-
+        /*
         //Gambiarra para não sobrescrever com o menu inferior
         TextView gam = new TextView(getApplicationContext());
         gam.setTextSize(100);
@@ -123,9 +115,10 @@ public class PedidoActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    private void pagamentoActivity()
+    private void pedidoActivity(int idPed)
     {
-        intent = new Intent(this, ProcessarPgtoActivity.class);
+        intent = new Intent(this, PedidoActivity.class);
+        intent.putExtra(PedidoActivity.intent1, idPed);
         changeActivity();
     }
 }
