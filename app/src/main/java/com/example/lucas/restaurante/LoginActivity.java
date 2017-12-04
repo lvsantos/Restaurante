@@ -9,25 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import bancodados.BancoDados;
-import bancodados.CardapioDAO;
 import bancodados.ClienteDAO;
 
-import bancodados.ItemCardapioDAO;
-import bancodados.MesaDAO;
-import bancodados.RestauranteDAO;
-import model.Cardapio;
-import model.CartaoCredito;
-import model.Cliente;
-import model.Endereco;
-import model.ItemCardapio;
-import model.Mesa;
-import model.Restaurante;
-
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity
+{
     private ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
+    private Intent intent;
+    public static String intent1 = "login";
+    public static String intent2 = "senha";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //System.out.println("Método onCreate da MainActivity()");

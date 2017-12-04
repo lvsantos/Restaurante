@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_pag"
-    tools:context="com.example.lucas.restaurante.ProcessarPgtoActivity">
+    tools:context="com.example.lucas.restaurante.CadastroActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
         android:paddingTop="10dp"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp">>
@@ -32,8 +30,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
-            android:ems="10"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/nomecompleto"
             android:inputType="textPersonName" />
 
@@ -43,7 +40,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/email"
             android:inputType="textEmailAddress" />
@@ -54,7 +51,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/cpf"
             android:ems="10"
             android:inputType="number" />
@@ -65,18 +62,18 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/datanascimento"
             android:inputType="date" />
 
-        <Spinner
-            android:id="@+id/spinner"
+        <EditText
+            android:id="@+id/sexo"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/sexo"/>
 
         <EditText
@@ -85,7 +82,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/endereco"
             android:inputType="textPostalAddress" />
@@ -94,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="24dp"
+            android:paddingLeft="15dp"
             android:paddingRight="24dp"
             android:paddingTop="20dp"
             tools:layout_editor_absoluteX="16dp"
@@ -169,7 +166,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/estado"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/telefone"
@@ -198,12 +195,12 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/usuario"
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/usuario"
             android:inputType="textPersonName" />
@@ -214,20 +211,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/senha"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/confirmasenha"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
-            android:ems="10"
-            android:background="@drawable/confirmasenha"
             android:inputType="textPassword" />
 
         <ImageView
@@ -235,8 +221,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginLeft="0dp"
             app:srcCompat="@drawable/dadoscartao" />
 
         <EditText
@@ -245,7 +229,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/nome"
             android:inputType="textPersonName" />
@@ -256,7 +240,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:ems="10"
             android:background="@drawable/numero"
             android:inputType="number" />
@@ -266,7 +250,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="24dp"
+            android:paddingLeft="15dp"
             android:paddingRight="24dp"
             android:paddingTop="20dp"
             tools:layout_editor_absoluteX="16dp"
@@ -292,7 +276,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="start"
                 android:background="@drawable/codigoseg"
-                android:ems="10"
                 android:inputType="number" />
         </RelativeLayout>
 
@@ -303,9 +286,10 @@
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/concluircadasto" />
+            android:background="@drawable/concluircadasto"
+            android:onClick="criarCliente"/>
 
 
     </LinearLayout>

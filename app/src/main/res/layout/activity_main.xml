@@ -8,7 +8,7 @@
     android:background="@drawable/background">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="0dp"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/logo"
             app:srcCompat="@drawable/logo" />
 
@@ -44,8 +44,8 @@
             android:layout_height="55dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginTop="45dp"
-            android:onClick="cardapio"/>
+            android:layout_marginTop="30dp"
+            android:onClick="redirecionaAbrirComanda"/>
 
         <Button
             android:id="@+id/btnLogin"
@@ -56,16 +56,17 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="20dp"
-            android:onClick="login"/>
+            android:onClick="redirecionaLogin"/>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_cadastro"
             android:layout_width="match_parent"
             android:layout_height="12dp"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/cadastro"/>
+            android:layout_marginTop="25dp"
+            android:background="@drawable/cadastro"
+            android:onClick="redirecionaCadastroCliente"/>
     </LinearLayout>
 
 </ScrollView>

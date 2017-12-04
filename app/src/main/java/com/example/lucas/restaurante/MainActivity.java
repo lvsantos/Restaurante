@@ -7,56 +7,57 @@ import android.view.View;
 
 import bancodados.BancoDados;
 import bancodados.CardapioDAO;
-import bancodados.ClienteDAO;
-
 import bancodados.ItemCardapioDAO;
 import bancodados.MesaDAO;
 import bancodados.RestauranteDAO;
-import model.Cardapio;
-import model.CartaoCredito;
-import model.Cliente;
-import model.ClienteLogado;
-import model.Endereco;
-import model.ItemCardapio;
-import model.Mesa;
-import model.Restaurante;
 
 public class MainActivity extends AppCompatActivity
 {
-    ClienteDAO cliDao = new ClienteDAO(new BancoDados(this));
-    private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
+    /*private RestauranteDAO restDAO = new RestauranteDAO(new BancoDados(this));
     private MesaDAO mesaDAO = new MesaDAO(new BancoDados(this));
     private CardapioDAO cardapioDAO = new CardapioDAO(new BancoDados(this));
-    private ItemCardapioDAO itemCardapioDAO = new ItemCardapioDAO(new BancoDados(this));
+    private ItemCardapioDAO itemCardapioDAO = new ItemCardapioDAO(new BancoDados(this));*/
     Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //System.out.println("Método onCreate da MainActivity()");
-        //intent = new Intent(this, TelaPrincipalActivity.class);
         //gerarBaseDados();
     }
 
-    public void login(View view)
+    private void changeActivity()
     {
-        System.out.println("Método login() da MainActivity()");
-        ClienteLogado.clienteLogado = cliDao.pesquisarClienteLogin("lvsantos");
-        telaPrincipalActivity();
-        //setContentView(R.layout.activity_login);
+        if(intent != null)
+        {
+            startActivity(intent);
+        }
     }
 
-    public void cardapio(View view)
+    public void redirecionaLogin(View view)
     {
-        setContentView(R.layout.activity_cardapio);
+        intent = new Intent(this, LoginActivity.class);
+        changeActivity();
     }
 
-    public void telaPrincipalActivity()
+    public void redirecionaAbrirComanda(View view)
+    {
+        intent = new Intent(this, AbrirComandaActivity.class);
+        changeActivity();
+    }
+
+    public void redirecionaCadastroCliente(View view)
+    {
+        intent = new Intent(this, CadastroActivity.class);
+        changeActivity();
+    }
+
+    /*public void telaPrincipalActivity()
     {
         intent = new Intent(this, TelaPrincipalActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     //Método para gerar base de dados nas tabelas para teste. (Excluir depois)
     /*public void gerarBaseDados()
