@@ -77,11 +77,12 @@ public class ClienteDAO
         return  null;
     }
 
-    public Cliente pesquisarClienteLogin(String login)
+    public Cliente pesquisarClienteLogin(String login, String senha)
     {
-        String query = "SELECT id, nomeComp, cpf, email, senha, dataNasc, sexo, celular, Cartao_credito_id, Endereco_id " +
+        String query = "SELECT id, nomeComp, cpf, email, dataNasc, sexo, celular, Cartao_credito_id, Endereco_id " +
                 "FROM Cliente " +
-                "WHERE login = " + StringParser.getAspas(login);
+                "WHERE login = " + StringParser.getAspas(login) +
+                " AND senha = " + StringParser.getAspas(senha);
 
         Cursor cursor = bd.selectQuery(query);
 
@@ -92,7 +93,7 @@ public class ClienteDAO
                     cursor.getString(cursor.getColumnIndex("nomeComp")),
                     cursor.getString(cursor.getColumnIndex("cpf")),
                     login,
-                    cursor.getString(cursor.getColumnIndex("senha")),
+                    senha,
                     cursor.getString(cursor.getColumnIndex("email")),
                     endDAO.pesquisarEnderecoId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Endereco_id")))),
                     cursor.getString(cursor.getColumnIndex("dataNasc")),

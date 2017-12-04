@@ -26,7 +26,7 @@ public class Login2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
         //System.out.println("Método onCreate da MainActivity()");
         //intent = new Intent(this, TelaPrincipalActivity.class);
         //gerarBaseDados();
@@ -56,7 +56,9 @@ public class Login2Activity extends AppCompatActivity
     {
         //System.out.println("Método login() da MainActivity()");
         EditText login = (EditText) findViewById(R.id.usuario);
-        Cliente cli = cliDao.pesquisarClienteLogin(login.getText().toString());
+        EditText senha = (EditText) findViewById(R.id.input_password);
+
+        Cliente cli = cliDao.pesquisarClienteLogin(login.getText().toString(), senha.getText().toString());
         if(cli != null)
         {
             ClienteLogado.clienteLogado = cli;
@@ -64,7 +66,7 @@ public class Login2Activity extends AppCompatActivity
         }
         else
         {
-            errorMessage("Cliente inexistente");
+            errorMessage("Login incorreto");
         }
     }
 }
