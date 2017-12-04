@@ -24,20 +24,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="256dp"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:paddingLeft="5dp"
-            android:text="Beef à milanesa do chefe italiano"/>
+            android:paddingTop="5dp"
+            android:text="Beef à milanesa do chefe italiano" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
             android:paddingBottom="10dp"
             android:paddingLeft="5dp"
-            android:text="Carne 100g, arroz, feijão e salada"/>
+            android:paddingTop="5dp"
+            android:text="Carne 100g, arroz, feijão e salada" />
 
     </LinearLayout>
 
