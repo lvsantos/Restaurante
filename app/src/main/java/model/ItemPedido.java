@@ -47,6 +47,36 @@ public class ItemPedido extends ItemCardapio
         return status;
     }
 
+    public String getStatusText()
+    {
+        String retorno = new String();
+        if (status == AGUARDANDO_APROV)
+        {
+            retorno = "Aguardando aprovação do pagamento";
+        }
+        else if (status == PGTO_APROV)
+        {
+            retorno = "Pagamento aprovado";
+        }
+        else if (status == ANDAMENTO)
+        {
+            retorno = "Pedido em andamento";
+        }
+        else if (status == ENCAMINHADO)
+        {
+            retorno = "Pedido encaminhado";
+        }
+        else if (status == FINALIZADO)
+        {
+            retorno = "Pedido finalizado";
+        }
+        else if (status == PREPARO)
+        {
+            retorno = "Pedido em preparo";
+        }
+        return retorno;
+    }
+
     public void setStatus(int status) {
         this.status = status;
     }

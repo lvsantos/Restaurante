@@ -58,6 +58,36 @@ public class Pedido
         return status;
     }
 
+    public String getStatusText()
+    {
+        String retorno = new String();
+        if (status == ItemPedido.AGUARDANDO_APROV)
+        {
+            retorno = "Aguardando aprovação do pagamento";
+        }
+        else if (status == ItemPedido.PGTO_APROV)
+        {
+            retorno = "Pagamento aprovado";
+        }
+        else if (status == ItemPedido.ANDAMENTO)
+        {
+            retorno = "Pedido em andamento";
+        }
+        else if (status == ItemPedido.ENCAMINHADO)
+        {
+            retorno = "Pedido encaminhado";
+        }
+        else if (status == ItemPedido.FINALIZADO)
+        {
+            retorno = "Pedido finalizado";
+        }
+        else if (status == ItemPedido.PREPARO)
+        {
+            retorno = "Pedido em preparo";
+        }
+        return retorno;
+    }
+
     public void setStatus(int status)
     {
         this.status = status;

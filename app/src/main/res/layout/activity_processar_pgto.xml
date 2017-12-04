@@ -25,12 +25,6 @@
             app:srcCompat="@drawable/textotopo"
             android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:id="@+id/editText5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome"/> -->
-
         <TextView
             android:id="@+id/nome_cartao"
             android:layout_width="match_parent"

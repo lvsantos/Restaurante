@@ -1,5 +1,6 @@
 package com.example.lucas.restaurante;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class ProcessarPgtoActivity extends AppCompatActivity
     private Cliente cliLogado = ClienteLogado.clienteLogado;
     private PedidoDAO pedDAO = new PedidoDAO(new BancoDados(this));
     private ItemPedidoDAO itemPedDAO = new ItemPedidoDAO(new BancoDados(this));
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,6 +63,17 @@ public class ProcessarPgtoActivity extends AppCompatActivity
         Toast.makeText(ProcessarPgtoActivity.this,
                 cliLogado.getNomeComp() + "\nSeu pagamento foi processado com sucesso",
                 Toast.LENGTH_LONG).show();
+        comandaActivity();
+    }
 
+    private void changeActivity()
+    {
+        startActivity(intent);
+    }
+
+    private void comandaActivity()
+    {
+        intent = new Intent(this, ComandaActivity.class);
+        changeActivity();
     }
 }
