@@ -7,7 +7,17 @@
     tools:context="com.example.lucas.restaurante.PedidoActivity"
     android:id="@+id/rl1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pag">
+
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/seupedido" />
 
     <ScrollView
         android:layout_width="match_parent"
