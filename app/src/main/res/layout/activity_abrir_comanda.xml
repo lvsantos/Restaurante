@@ -37,7 +37,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/pronto"
+            android:background="@drawable/botao"
+            android:text="PRONTO"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:padding="12dp"
             android:onClick="abrirComanda"/>
 

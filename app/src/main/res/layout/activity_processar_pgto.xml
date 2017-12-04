@@ -99,7 +99,10 @@
             android:layout_marginTop="80dp"
             android:layout_toLeftOf="@+id/editText9"
             android:layout_toStartOf="@+id/editText9"
-            android:background="@drawable/concluir"
+            android:text="CONCLUIR PAGAMENTO"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:background="@drawable/botao"
             android:onClick="concluirPagamento"/>
 
     </LinearLayout>

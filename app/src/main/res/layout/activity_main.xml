@@ -39,33 +39,44 @@
         <Button
             android:id="@+id/btnCardapio"
             style="@android:style/Widget.DeviceDefault.Button"
-            android:background="@drawable/botaocardapio"
+            android:background="@drawable/botaomain"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="30dp"
+            android:text="Cardápio"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
             android:onClick="redirecionaAbrirComanda"/>
 
         <Button
             android:id="@+id/btnLogin"
             style="@android:style/Widget.DeviceDefault.Button"
-            android:background="@drawable/botaologin"
+            android:background="@drawable/botaomain"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="20dp"
+            android:text="Login"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
             android:onClick="redirecionaLogin"/>
+
 
         <Button
             android:id="@+id/btn_cadastro"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/cadastro"
+            android:layout_marginTop="10dp"
+            android:text="Ainda não tem cadastro? Clique aqui"
+            android:textAllCaps="false"
+            android:background="@drawable/bordavazia"
             android:onClick="redirecionaCadastroCliente"/>
     </LinearLayout>
 

@@ -34,8 +34,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:background="@drawable/usuario"
-            android:inputType="text"/>
+            android:text="Usuário"
+            android:textColor="#918D8D"
+            android:paddingLeft="15dp"
+            android:background="@drawable/borda"            android:inputType="text"/>
         <!--</android.support.design.widget.TextInputLayout> -->
 
         <!-- Password Label -->
@@ -49,27 +51,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:inputType="textPassword"
-            android:background="@drawable/digitesenha"/>
-        <!--</android.support.design.widget.TextInputLayout>-->
+            android:text="Senha"
+            android:textColor="#918D8D"
+            android:paddingLeft="15dp"
+            android:background="@drawable/borda"/>       <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:background="@drawable/botaologin"
+            android:background="@drawable/botao"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
             android:padding="12dp"
             android:onClick="verifyLogin"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/cadastropreto"/>
+            android:text="Ainda não tem cadastro? Clique aqui"
+            android:textAllCaps="false"
+            android:background="#FFFFFF"/>
 
     </LinearLayout>
 </ScrollView>

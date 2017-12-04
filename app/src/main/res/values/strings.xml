@@ -5,4 +5,9 @@
     <string name="logo">Logo</string>
     <string name="imagem">Imagem</string>
     <string name="title">Title</string>
+    <string-array name="sexo">
+        <item>feminino</item>
+        <item>masculino</item>
+        <item>não desejo declarar</item>
+    </string-array>
 </resources>
